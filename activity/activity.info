@@ -1,0 +1,8 @@
+[Activity]
+name = JAMath
+activity_version = 1
+host_version = 1
+bundle_id = org.ceibaljam.JAMath
+icon = JAMath
+class = JAMath.JAMath
+show_launcher = yes
