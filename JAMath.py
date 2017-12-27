@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import gtk
-from sugar.activity import activity
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+from sugar3.activity import activity
 import sugargame.canvas
 
 from juego import Game
 
-from sugar.graphics.toolbarbox import ToolbarBox
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.activity.widgets import StopButton
-from sugar.graphics.toolbutton import ToolButton
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.activity.widgets import StopButton
+from sugar3.graphics.toolbutton import ToolButton
 
 class JAMath(activity.Activity):
 
@@ -34,7 +36,7 @@ class JAMath(activity.Activity):
 
         barra = toolbox.toolbar
 
-        separator2 = gtk.SeparatorToolItem()
+        separator2 = Gtk.SeparatorToolItem()
         separator2.props.draw = False
         separator2.set_expand(True)
         barra.insert(separator2, -1)
