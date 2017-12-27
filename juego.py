@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 import random
 import pygame
 from pygame.locals import *
@@ -78,8 +80,8 @@ class Game():
             self.screen.blit(jugar,(450,100))
             self.screen.blit(level,(450,200))
             self.screen.blit(quit,(450,300))
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
@@ -127,8 +129,8 @@ class Game():
             self.screen.blit(facil,(450,100))
             self.screen.blit(medio,(450,200))
             self.screen.blit(dificil,(450,300))
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
@@ -207,8 +209,8 @@ class Game():
             self.screen.blit(self.fuente_32.render("Puntaje Mas Alto: " + str(puntuacionalta),True,(0,0,0)),(600,0))
             self.screen.blit(nueva_expresion.expresion,(600,750))
             nueva_expresion.preguntas.draw(self.screen) 
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
             for event in pygame.event.get():
                 if event.type == QUIT:
                     save_puntuacionalta(score)
