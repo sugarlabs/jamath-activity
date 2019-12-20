@@ -54,8 +54,8 @@ class expresion:
 def cargar_imagen(nombre,trasnparent=False):
      try:
         imagen = pygame.image.load(nombre)
-     except pygame.error, message:
-          raise SystemExit, message
+     except pygame.error as message:
+          raise SystemExit(message)
      imagen = imagen.convert()
      return imagen
 
@@ -267,12 +267,12 @@ def load_sound(name):
         sound = pygame.mixer.Sound(path)
         return sound
     except:
-        print 'Warning, unable to load: ',path
+        print('Warning, unable to load: ',path)
 
 # Funcion para guardar puntuaciones altas
 def save_puntuacionalta(score):
     file_path = os.path.join(os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'PuntajeAlto')
-    print file_path
+    print(file_path)
     puntuacionalta = []
     puntuacionalta.append(0)
     if os.path.exists(file_path):
@@ -287,7 +287,7 @@ def save_puntuacionalta(score):
 
 def load_puntuacionalta():
     file_path = os.path.join(os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'PuntajeAlto')
-    print file_path
+    print(file_path)
     if os.path.exists(file_path):
         try:
             File = open(file_path,"r")

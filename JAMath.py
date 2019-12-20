@@ -8,7 +8,7 @@ from sugar3.activity import activity
 import sugargame.canvas
 
 from juego import Game
-
+import pygame
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
@@ -23,9 +23,12 @@ class JAMath(activity.Activity):
         
         self.jamath_activity = Game()
         self.build_toolbar()
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
+        self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
+            main= self.jamath_activity.run,
+            modules= [pygame.display])
+
         self.set_canvas(self._pygamecanvas)
-        self._pygamecanvas.run_pygame(self.jamath_activity.run)
+        self._pygamecanvas.grab_focus()
 
     def build_toolbar(self):
 

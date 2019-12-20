@@ -3,5 +3,5 @@ name = JAMath
 activity_version = 2
 bundle_id = org.ceibaljam.JAMath
 icon = JAMath
-exec = sugar-activity JAMath.JAMath
+exec = sugar-activity3 JAMath.JAMath
 show_launcher = yes
