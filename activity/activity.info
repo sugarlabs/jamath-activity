@@ -5,3 +5,4 @@ bundle_id = org.ceibaljam.JAMath
 icon = JAMath
 exec = sugar-activity JAMath.JAMath
 show_launcher = yes
+repository = https://github.com/sugarlabs/jamath-activity.git
