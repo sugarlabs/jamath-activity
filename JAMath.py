@@ -24,8 +24,8 @@ class JAMath(activity.Activity):
         self.jamath_activity = Game()
         self.build_toolbar()
         self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
-            main= self.jamath_activity.run,
-            modules= [pygame.display])
+            main=self.jamath_activity.run,
+            modules=[pygame.display])
 
         self.set_canvas(self._pygamecanvas)
         self._pygamecanvas.grab_focus()
