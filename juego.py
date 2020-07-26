@@ -87,7 +87,7 @@ class Game():
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
-        while 1:
+        while self.running:
             self.screen.fill((0,0,0))
             self.screen.blit(fondo, (0, 0))
             self.screen.blit(jugar,(sx(450),sy(100)))
@@ -95,9 +95,12 @@ class Game():
             self.screen.blit(quit,(sx(450),sy(300)))
             while Gtk.events_pending():
                 Gtk.main_iteration()
+            if not self.running:
+                break
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    exit()
+                    self.running = False
+                    return
                 elif event.type == MOUSEMOTION:
                     if event.pos[0] > sx(550) and event.pos[0] < sx(450) + jugar.get_width() and \
                          event.pos[1] > sy(100) and event.pos[1] < sy(100) + jugar.get_height():
@@ -124,7 +127,8 @@ class Game():
                             chosen_level = self.choose_level()
                         elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + quit.get_width() and \
                             event.pos[1] > sy(300) and event.pos[1] < sy(300) + quit.get_height():
-                            exit()   
+                            self.running = False
+                            exit()  
             pygame.display.update()
 
 
@@ -136,7 +140,7 @@ class Game():
         dificil = self.fuente_130.render("dificil",True,(0,0,255))
         fondo = cargar_imagen('data/1.jpg')
         level = "facil"
-        while 1:
+        while self.running:
             self.screen.fill((0,0,0))
             self.screen.blit(fondo, (0, 0))
             self.screen.blit(facil,(sx(450),sy(100)))
@@ -144,9 +148,12 @@ class Game():
             self.screen.blit(dificil,(sx(450),sy(300)))
             while Gtk.events_pending():
                 Gtk.main_iteration()
+            if not self.running:
+                break
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    exit()
+                    self.running = False
+                    return
                 elif event.type == MOUSEMOTION:
                     if event.pos[0] > sx(450) and event.pos[0] < sx(450) + facil.get_width() and \
                          event.pos[1] > sy(100) and event.pos[1] < sy(100) + facil.get_height():
@@ -200,7 +207,7 @@ class Game():
         score = 0
         puntuacionalta = load_puntuacionalta()
 
-        while True: 
+        while self.running: 
             time = self.clock.tick(30) / 1000.
             if another_quest:
                 nueva_expresion = expresion(level, self.fuente_60)
@@ -224,10 +231,13 @@ class Game():
             nueva_expresion.preguntas.draw(self.screen) 
             while Gtk.events_pending():
                 Gtk.main_iteration()
+            if not self.running:
+                break
             for event in pygame.event.get():
                 if event.type == QUIT:
                     save_puntuacionalta(score)
-                    exit()
+                    self.running = False
+                    return
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
@@ -249,7 +259,8 @@ class Game():
             pygame.display.update()
 
     def run(self):
-        pygame.init()
+        self.running = True
+        pygame.font.init()
         self.screen = pygame.display.get_surface()
 
         info = pygame.display.Info()
@@ -272,7 +283,7 @@ class Game():
         self.screen.blit(self.fondo, (0, 0))
 
         pygame.display.flip()
-        while 1:
+        while self.running:
             level = self.main()
             self.play(level)
 
