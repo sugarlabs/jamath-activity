@@ -32,6 +32,9 @@ class JAMath(Activity):
     def build_toolbar(self):
 
         toolbox = ToolbarBox()
+        self.set_toolbar_box(toolbox)
+        toolbox.show()
+
         activity_button = ActivityToolbarButton(self)
         toolbox.toolbar.insert(activity_button, -1)
         activity_button.show()
@@ -42,15 +45,16 @@ class JAMath(Activity):
         separator2.props.draw = False
         separator2.set_expand(True)
         barra.insert(separator2, -1)
+        separator2.show()
 
         stop_button = StopButton(self)
-        stop_button.props.accelerator = '<Ctrl>q'
         barra.insert(stop_button, -1)
         stop_button.show()
+        stop_button.connect('clicked', self._stop_cb)
 
-        self.set_toolbar_box(toolbox)
+    def _stop_cb(self, button):
+        self.jamath_activity.running = False
 
-        toolbox.show_all()
 
 
 
