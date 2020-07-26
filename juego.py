@@ -183,8 +183,7 @@ class Game():
 
         right_sound = load_sound("./data/right.ogg")
         wrong_sound = load_sound("./data/wrong.ogg")
-        fondo = [load_image("data/" + str(x) + ".jpg") for x in range(0,NUM_IMAGES)]
-        random_index = random.randint(0,NUM_IMAGES - 1)
+        fondo = load_image(str(1) + ".jpg")
         score = 0
         puntuacionalta = load_puntuacionalta()
 
@@ -205,7 +204,7 @@ class Game():
             nueva_expresion.preguntas.update(time,random.randint(80,155),level)
 
             self.screen.fill((0,0,0))   
-            self.screen.blit(fondo[random_index],(0,0))
+            self.screen.blit(fondo,(0,0))
             self.screen.blit(self.fuente_32.render("Puntaje: " + str(score),True,(0,0,0)),(410,0))
             self.screen.blit(self.fuente_32.render("Puntaje Mas Alto: " + str(puntuacionalta),True,(0,0,0)),(600,0))
             self.screen.blit(nueva_expresion.expresion,(600,750))
