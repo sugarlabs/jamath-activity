@@ -9,6 +9,8 @@ import random
 import pygame
 from pygame.locals import *
 
+from sugar3.activity.activity import get_activity_root
+
 
 class number(pygame.sprite.Sprite):
     
@@ -261,7 +263,7 @@ def load_image(name):
 
 # Funcion para cargar Sonidos
 def load_sound(name):
-    path = os.path.join('data',name)
+    path = os.path.join(get_activity_root(),'data',name)
     try:
         sound = pygame.mixer.Sound(path)
         return sound
@@ -270,7 +272,7 @@ def load_sound(name):
 
 # Funcion para guardar puntuaciones altas
 def save_puntuacionalta(score):
-    file_path = os.path.join(os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'PuntajeAlto')
+    file_path = os.path.join(get_activity_root(),'data', 'PuntajeAlto')
     print file_path
     puntuacionalta = []
     puntuacionalta.append(0)
@@ -285,7 +287,7 @@ def save_puntuacionalta(score):
         File.close()
 
 def load_puntuacionalta():
-    file_path = os.path.join(os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'PuntajeAlto')
+    file_path = os.path.join(get_activity_root(),'data', 'PuntajeAlto')
     print file_path
     if os.path.exists(file_path):
         try:
