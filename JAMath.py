@@ -4,28 +4,30 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from sugar3.activity import activity
+import pygame
 import sugargame.canvas
 
 from juego import Game
 
+from sugar3.activity.activity import Activity
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 from sugar3.graphics.toolbutton import ToolButton
 
-class JAMath(activity.Activity):
+class JAMath(Activity):
 
     def __init__(self, handle):
-        activity.Activity.__init__(self, handle)
+        Activity.__init__(self, handle)
 
         self.max_participants = 1
         
         self.jamath_activity = Game()
         self.build_toolbar()
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
+        self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
+            main=self.jamath_activity.run,
+            modules=[pygame.display])
         self.set_canvas(self._pygamecanvas)
-        self._pygamecanvas.run_pygame(self.jamath_activity.run)
 
     def build_toolbar(self):
 
