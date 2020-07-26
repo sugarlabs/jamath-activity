@@ -26,7 +26,7 @@ class JAMath(Activity):
         self.build_toolbar()
         self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
             main=self.jamath_activity.run,
-            modules=[pygame.display])
+            modules=[pygame.display, pygame.font, pygame.mixer])
         self.set_canvas(self._pygamecanvas)
 
     def build_toolbar(self):
