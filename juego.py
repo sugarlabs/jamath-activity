@@ -56,6 +56,10 @@ class expresion:
 def cargar_imagen(nombre,trasnparent=False):
      try:
         imagen = pygame.image.load(nombre)
+        sizex, sizey = imagen.get_rect().size
+        imagen = \
+            pygame.transform.scale(imagen,
+                                   (int(sizex * scale_x), int(sizey * scale_y)))
      except pygame.error, message:
           raise SystemExit, message
      imagen = imagen.convert()
@@ -68,6 +72,13 @@ class Game():
         pass
 
 
+    global sx, sy
+    def sx(coord_x):
+        return coord_x * scale_x
+
+    def sy(coord_y):
+        return coord_y * scale_y
+
     def main(self):
         sonido_menu = load_sound("./data/menu.ogg")
         jugar = self.fuente_130.render("JUGAR",True,(0,0,255))
@@ -79,40 +90,40 @@ class Game():
         while 1:
             self.screen.fill((0,0,0))
             self.screen.blit(fondo, (0, 0))
-            self.screen.blit(jugar,(450,100))
-            self.screen.blit(level,(450,200))
-            self.screen.blit(quit,(450,300))
+            self.screen.blit(jugar,(sx(450),sy(100)))
+            self.screen.blit(level,(sx(450),sy(200)))
+            self.screen.blit(quit,(sx(450),sy(300)))
             while Gtk.events_pending():
                 Gtk.main_iteration()
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
                 elif event.type == MOUSEMOTION:
-                    if event.pos[0] > 550 and event.pos[0] < 450 + jugar.get_width() and \
-                         event.pos[1] > 100 and event.pos[1] < 100 + jugar.get_height():
+                    if event.pos[0] > sx(550) and event.pos[0] < sx(450) + jugar.get_width() and \
+                         event.pos[1] > sy(100) and event.pos[1] < sy(100) + jugar.get_height():
                          jugar = self.fuente_130.render("JUGAR",True,(0,0,255))
                          if sonido_menu != None: 
                              sonido_menu.play()
-                    elif event.pos[0] > 550 and event.pos[0] < 450 + level.get_width() and \
-                         event.pos[1] > 200 and event.pos[1] < 200 + level.get_height():
+                    elif event.pos[0] > sx(550) and event.pos[0] < sx(450) + level.get_width() and \
+                         event.pos[1] > sy(200) and event.pos[1] < sy(200) + level.get_height():
                          level = self.fuente_130.render("NIVEL",True,(0,0,255))   
                          if sonido_menu != None: 
                              sonido_menu.play()
-                    elif event.pos[0] > 550 and event.pos[0] < 450 + quit.get_width() and \
-                         event.pos[1] > 300 and event.pos[1] < 300 + quit.get_height():
+                    elif event.pos[0] > sx(550) and event.pos[0] < sx(450) + quit.get_width() and \
+                         event.pos[1] > sy(300) and event.pos[1] < sy(300) + quit.get_height():
                          quit = self.fuente_130.render("SALIR",True,(0,0,255)) 
                          if sonido_menu != None: 
                              sonido_menu.play()
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > 450 and event.pos[0] < 450 + jugar.get_width() and \
-                            event.pos[1] > 100 and event.pos[1] < 100 + jugar.get_height():
+                        if event.pos[0] > sx(450) and event.pos[0] < sx(450) + jugar.get_width() and \
+                            event.pos[1] > sy(100) and event.pos[1] < sy(100) + jugar.get_height():
                             return chosen_level
-                        elif event.pos[0] > 450 and event.pos[0] < 450 + level.get_width() and \
-                            event.pos[1] > 200 and event.pos[1] < 200 + level.get_height():
+                        elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + level.get_width() and \
+                            event.pos[1] > sy(200) and event.pos[1] < sy(200) + level.get_height():
                             chosen_level = self.choose_level()
-                        elif event.pos[0] > 450 and event.pos[0] < 450 + quit.get_width() and \
-                            event.pos[1] > 300 and event.pos[1] < 300 + quit.get_height():
+                        elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + quit.get_width() and \
+                            event.pos[1] > sy(300) and event.pos[1] < sy(300) + quit.get_height():
                             exit()   
             pygame.display.update()
 
@@ -128,27 +139,27 @@ class Game():
         while 1:
             self.screen.fill((0,0,0))
             self.screen.blit(fondo, (0, 0))
-            self.screen.blit(facil,(450,100))
-            self.screen.blit(medio,(450,200))
-            self.screen.blit(dificil,(450,300))
+            self.screen.blit(facil,(sx(450),sy(100)))
+            self.screen.blit(medio,(sx(450),sy(200)))
+            self.screen.blit(dificil,(sx(450),sy(300)))
             while Gtk.events_pending():
                 Gtk.main_iteration()
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
                 elif event.type == MOUSEMOTION:
-                    if event.pos[0] > 450 and event.pos[0] < 450 + facil.get_width() and \
-                         event.pos[1] > 100 and event.pos[1] < 100 + facil.get_height():
+                    if event.pos[0] > sx(450) and event.pos[0] < sx(450) + facil.get_width() and \
+                         event.pos[1] > sy(100) and event.pos[1] < sy(100) + facil.get_height():
                          facil = self.fuente_130.render("facil",True,(0,0,255)) 
                          if sonido_menu != None: 
                              sonido_menu.play()
-                    elif event.pos[0] > 450 and event.pos[0] < 450 + medio.get_width() and \
-                         event.pos[1] > 200 and event.pos[1] < 200 + medio.get_height():
+                    elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + medio.get_width() and \
+                         event.pos[1] > sy(200) and event.pos[1] < sy(200) + medio.get_height():
                          medio = self.fuente_130.render("medio",True,(0,0,255))  
                          if sonido_menu != None: 
                              sonido_menu.play() 
-                    elif event.pos[0] > 450 and event.pos[0] < 450 + dificil.get_width() and \
-                         event.pos[1] > 300 and event.pos[1] < 300 + dificil.get_height():
+                    elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + dificil.get_width() and \
+                         event.pos[1] > sy(300) and event.pos[1] < sy(300) + dificil.get_height():
                          dificil = self.fuente_130.render("dificil",True,(0,0,255)) 
                          if sonido_menu != None: 
                              sonido_menu.play()
@@ -158,16 +169,16 @@ class Game():
                          dificil = self.fuente_130.render("dificil",True,(0,0,255))
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > 450 and event.pos[0] < 450 + facil.get_width() and \
-                            event.pos[1] > 100 and event.pos[1] < 100 + facil.get_height():
+                        if event.pos[0] > sx(450) and event.pos[0] < sx(450) + facil.get_width() and \
+                            event.pos[1] > sy(100) and event.pos[1] < sy(100) + facil.get_height():
                             pass
                             return level
-                        elif event.pos[0] > 450 and event.pos[0] < 450 + medio.get_width() and \
-                            event.pos[1] > 200 and event.pos[1] < 200 + medio.get_height():
+                        elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + medio.get_width() and \
+                            event.pos[1] > sy(200) and event.pos[1] < sy(200) + medio.get_height():
                             level = "medio"
                             return level
-                        elif event.pos[0] > 450 and event.pos[0] < 450 + dificil.get_width() and \
-                            event.pos[1] > 300 and event.pos[1] < 300 + dificil.get_height():
+                        elif event.pos[0] > sx(450) and event.pos[0] < sx(450) + dificil.get_width() and \
+                            event.pos[1] > sy(300) and event.pos[1] < sy(300) + dificil.get_height():
                             level = "dificil"
                             return level   
                 elif event.type == KEYDOWN:
@@ -207,9 +218,9 @@ class Game():
 
             self.screen.fill((0,0,0))   
             self.screen.blit(fondo,(0,0))
-            self.screen.blit(self.fuente_32.render("Puntaje: " + str(score),True,(0,0,0)),(410,0))
-            self.screen.blit(self.fuente_32.render("Puntaje Mas Alto: " + str(puntuacionalta),True,(0,0,0)),(600,0))
-            self.screen.blit(nueva_expresion.expresion,(600,750))
+            self.screen.blit(self.fuente_32.render("Puntaje: " + str(score),True,(0,0,0)),(sx(410),0))
+            self.screen.blit(self.fuente_32.render("Puntaje Mas Alto: " + str(puntuacionalta),True,(0,0,0)),(sx(600),0))
+            self.screen.blit(nueva_expresion.expresion,(sx(600),sy(750)))
             nueva_expresion.preguntas.draw(self.screen) 
             while Gtk.events_pending():
                 Gtk.main_iteration()
@@ -240,11 +251,22 @@ class Game():
     def run(self):
         pygame.init()
         self.screen = pygame.display.get_surface()
+
+        info = pygame.display.Info()
+
+        if not self.screen:
+            self.screen = pygame.display.set_mode(
+                (info.current_w, info.current_h))
+
+        global scale_x, scale_y
+        scale_x = self.screen.get_width() / 1200.0
+        scale_y = self.screen.get_height() / 900.0
+
         self.clock = pygame.time.Clock()
 
-        self.fuente_32 = pygame.font.Font("data/fuente.ttf", 32)
-        self.fuente_60 = pygame.font.Font("./data/fuente.ttf", 60)
-        self.fuente_130 = pygame.font.Font("./data/fuente.ttf", 130)
+        self.fuente_32 = pygame.font.Font("data/fuente.ttf", int(sx(32)))
+        self.fuente_60 = pygame.font.Font("./data/fuente.ttf", int(sx(60)))
+        self.fuente_130 = pygame.font.Font("./data/fuente.ttf", int(sx(130)))
 
         self.fondo = cargar_imagen('data/1.jpg')
         self.screen.blit(self.fondo, (0, 0))
