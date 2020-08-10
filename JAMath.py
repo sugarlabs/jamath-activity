@@ -10,6 +10,7 @@ import sugargame.canvas
 from juego import Game
 
 from sugar3.activity.activity import Activity
+from sugar3.activity.activity import get_activity_root
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
@@ -21,8 +22,8 @@ class JAMath(Activity):
         Activity.__init__(self, handle)
 
         self.max_participants = 1
-        
-        self.jamath_activity = Game()
+
+        self.jamath_activity = Game(get_activity_root())
         self.build_toolbar()
         self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
             main=self.jamath_activity.run,
