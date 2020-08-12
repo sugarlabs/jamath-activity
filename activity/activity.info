@@ -1,6 +1,6 @@
 [Activity]
 name = JAMath
-activity_version = 2
+activity_version = 3
 bundle_id = org.ceibaljam.JAMath
 icon = JAMath
 exec = sugar-activity JAMath.JAMath

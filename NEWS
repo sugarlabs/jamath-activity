@@ -1,0 +1,22 @@
+v3
+
+* Keep juego.py independent of sugar3.* libraries (Jui Pradhan)
+* Fix Warning due to incorrect argument and module initialization
+* Update sugargame to v1.2 (Jui Pradhan),
+* Fix libpng warning: iCCP: known incorrect sRGB profile (Jui Pradhan),
+* Adapt to display size (Jui Pradhan),
+* Fix KeyError: 'SUGAR_ACTIVITY_ROOT' (Jui Pradhan),
+* Fix pygame.error: Couldn't open data/data/0.jpg (Jui Pradhan),
+* Added README and update activity metadata (Ayush Nawal),
+* Port from GObject to GLib (Rahul Bothra),
+* Fix image path (Rahul Bothra),
+* Fix duplicate images (Rahul Bothra),
+* Port to Gtk+3 (Yash Agrawal)
+
+v2
+
+* Added sugargame and toolbar (Tony Anderson)
+
+v1
+
+* Initial release
