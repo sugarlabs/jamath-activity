@@ -58,8 +58,8 @@ def cargar_imagen(nombre,trasnparent=False):
         imagen = \
             pygame.transform.scale(imagen,
                                    (int(sizex * scale_x), int(sizey * scale_y)))
-     except pygame.error, message:
-          raise SystemExit, message
+     except pygame.error as message:
+          raise SystemExit(message)
      imagen = imagen.convert()
      return imagen
 
@@ -298,12 +298,12 @@ def load_sound(name, activity_root):
         sound = pygame.mixer.Sound(path)
         return sound
     except:
-        print 'Warning, unable to load: ',path
+        print('Warning, unable to load: ',path)
 
 # Funcion para guardar puntuaciones altas
 def save_puntuacionalta(score, activity_root):
     file_path = os.path.join(activity_root,'data', 'PuntajeAlto')
-    print file_path
+    print(file_path)
     puntuacionalta = []
     puntuacionalta.append(0)
     if os.path.exists(file_path):
@@ -318,7 +318,7 @@ def save_puntuacionalta(score, activity_root):
 
 def load_puntuacionalta(activity_root):
     file_path = os.path.join(activity_root,'data', 'PuntajeAlto')
-    print file_path
+    print(file_path)
     if os.path.exists(file_path):
         try:
             File = open(file_path,"r")
