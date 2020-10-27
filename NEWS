@@ -1,3 +1,8 @@
+
+* Fix sound not loaded warning (Jui Pradhan)
+* Update to sugargame 1.3 (Jui Pradhan)
+* Port to python3 (Jui Pradhan)
+
 v3
 
 * Keep juego.py independent of sugar3.* libraries (Jui Pradhan)
