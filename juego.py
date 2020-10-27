@@ -78,7 +78,7 @@ class Game():
         return coord_y * scale_y
 
     def main(self):
-        sonido_menu = load_sound("menu.ogg", self.activity_root)
+        sonido_menu = load_sound("menu.ogg")
         jugar = self.fuente_130.render("JUGAR",True,(0,0,255))
         level = self.fuente_130.render("NIVEL",True,(0,0,255))
         quit = self.fuente_130.render("SALIR",True,(0,0,255))
@@ -132,7 +132,7 @@ class Game():
 
     def choose_level(self):
         
-        sonido_menu = load_sound("menu.ogg", self.activity_root)
+        sonido_menu = load_sound("menu.ogg")
         facil = self.fuente_130.render("facil",True,(0,0,255))
         medio = self.fuente_130.render("medio",True,(0,0,255))
         dificil = self.fuente_130.render("dificil",True,(0,0,255))
@@ -199,8 +199,8 @@ class Game():
 
         another_quest = True
 
-        right_sound = load_sound("right.ogg", self.activity_root)
-        wrong_sound = load_sound("wrong.ogg", self.activity_root)
+        right_sound = load_sound("right.ogg")
+        wrong_sound = load_sound("wrong.ogg")
         fondo = load_image(str(1) + ".jpg")
         score = 0
         puntuacionalta = load_puntuacionalta(self.activity_root)
@@ -292,8 +292,8 @@ def load_image(name):
     return pygame.image.load(path).convert_alpha()
 
 # Funcion para cargar Sonidos
-def load_sound(name, activity_root):
-    path = os.path.join(activity_root,'data',name)
+def load_sound(name):
+    path = os.path.join('data',name)
     try:
         sound = pygame.mixer.Sound(path)
         return sound
