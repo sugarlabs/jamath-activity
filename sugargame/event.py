@@ -68,12 +68,12 @@ class Translator(object):
 
         # Callback functions to link the event systems
         self._activity.connect('unrealize', self._quit_cb)
-        self._activity.connect('visibility_notify_event', self._visibility_cb)
+        self._activity.connect('visibility-notify-event', self._visibility_cb)
         self._activity.connect('configure-event', self._resize_cb)
-        self._inner_evb.connect('key_press_event', self._keydown_cb)
-        self._inner_evb.connect('key_release_event', self._keyup_cb)
-        self._inner_evb.connect('button_press_event', self._mousedown_cb)
-        self._inner_evb.connect('button_release_event', self._mouseup_cb)
+        self._inner_evb.connect('key-press-event', self._keydown_cb)
+        self._inner_evb.connect('key-release-event', self._keyup_cb)
+        self._inner_evb.connect('button-press-event', self._mousedown_cb)
+        self._inner_evb.connect('button-release-event', self._mouseup_cb)
         self._inner_evb.connect('motion-notify-event', self._mousemove_cb)
         self._inner_evb.connect('screen-changed', self._screen_changed_cb)
 
@@ -141,7 +141,7 @@ class Translator(object):
 
     def _keymods(self):
         mod = 0
-        for key_val, mod_val in self.mod_map.iteritems():
+        for key_val, mod_val in self.mod_map.items():
             mod |= self.__keystate[key_val] and mod_val
         return mod
 
@@ -170,7 +170,7 @@ class Translator(object):
             self.__keystate[keycode] = type == pygame.KEYDOWN
             if type == pygame.KEYUP:
                 mod = self._keymods()
-            ukey = unichr(Gdk.keyval_to_unicode(event.keyval))
+            ukey = chr(Gdk.keyval_to_unicode(event.keyval))
             if ukey == '\000':
                 ukey = ''
             evt = pygame.event.Event(type, key=keycode, unicode=ukey, mod=mod)
@@ -250,7 +250,7 @@ class Translator(object):
     def _post(self, evt):
         try:
             pygame.event.post(evt)
-        except pygame.error, e:
+        except pygame.error as e:
             if str(e) == 'video system not initialized':
                 pass
             elif str(e) == 'Event queue full':
