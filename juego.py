@@ -8,6 +8,7 @@ from gi.repository import Gtk
 import random
 import pygame
 from pygame.locals import *
+import logging
 
 
 class number(pygame.sprite.Sprite):
@@ -298,12 +299,12 @@ def load_sound(name):
         sound = pygame.mixer.Sound(path)
         return sound
     except:
-        print('Warning, unable to load: ',path)
+        logging.debug('Warning, unable to load: ',path)
 
 # Funcion para guardar puntuaciones altas
 def save_puntuacionalta(score, activity_root):
     file_path = os.path.join(activity_root,'data', 'PuntajeAlto')
-    print(file_path)
+    logging.debug(file_path)
     puntuacionalta = []
     puntuacionalta.append(0)
     if os.path.exists(file_path):
@@ -318,7 +319,7 @@ def save_puntuacionalta(score, activity_root):
 
 def load_puntuacionalta(activity_root):
     file_path = os.path.join(activity_root,'data', 'PuntajeAlto')
-    print(file_path)
+    logging.debug(file_path)
     if os.path.exists(file_path):
         try:
             File = open(file_path,"r")
