@@ -38,8 +38,8 @@ class expresion:
         self.vida = 0
                                            
         self.preguntas = pygame.sprite.Group()
-        self.preguntas.add(number(random.randint(100,640),
-                                 random.randint(-50,-10),
+        self.preguntas.add(number(random.randint(int(sx(100)),int(sx(640))),
+                                 random.randint(int(sy(-50)),int(sy(-10))),
                                  fuente.render(self.resultado,True,
                                  (random.randint(0,255),random.randint(0,255),random.randint(0,255))),True))
         for i in range(random.randint(5,10)):
@@ -48,7 +48,7 @@ class expresion:
             else:
                 wrong = str(int(self.resultado) + random.randint(1,10))
             image_wrong = fuente.render(wrong,True,(random.randint(0,255),random.randint(0,255),random.randint(0,255)))
-            self.preguntas.add(number(random.randint(300,1000),random.randint(-0,-0),image_wrong,False))
+            self.preguntas.add(number(random.randint(int(sx(300)),int(sx(900))),random.randint(-0,-0),image_wrong,False))
 
 
 def cargar_imagen(nombre,trasnparent=False):
