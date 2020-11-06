@@ -202,7 +202,7 @@ class Game():
 
         right_sound = load_sound("right.ogg")
         wrong_sound = load_sound("wrong.ogg")
-        fondo = load_image(str(1) + ".jpg")
+        fondo = cargar_imagen("data/"+ str(1) + ".jpg")
         score = 0
         puntuacionalta = load_puntuacionalta(self.activity_root)
 
@@ -286,11 +286,6 @@ class Game():
             self.play(level)
 
 
-
-# Funcion para cargar imagenes
-def load_image(name):
-    path = os.path.join('data',name)
-    return pygame.image.load(path).convert_alpha()
 
 # Funcion para cargar Sonidos
 def load_sound(name):
