@@ -40,39 +40,42 @@ class expresion:
         
         no_repeat_check_x = []
         no_repeat_check_y = []
-        list_y = [int(sx(-50)),int(sx(-40)),int(sx(-30)),int(sx(-10)),int(sx(-20)),int(sx(-0)),int(sx(-60)),int(sx(-65))]
-        list_x = [int(sx(100)),int(sx(200)),int(sx(300)),int(sx(400)),int(sx(500)),int(sx(600)),int(sx(700)),
-                int(sx(800)),int(sx(900))]
+        list_y = [int(sx(-90)), int(sx(-80)), int(sx(-60)), int(sx(-50)), int(sx(-40)), int(sx(-30)),
+                int(sx(-20)), int(sx(-10)), int(sx(-0))]
+        list_x = [int(sx(100)), int(sx(200)), int(sx(300)), int(sx(400)), int(sx(500)), int(sx(600)),
+                int(sx(700)), int(sx(800)), 
+                int(sx(900))]
+
         def rand_generator_x():
-            count_x=0 
-            while(count_x<len(list_x)):        
+            count_x = 0
+            while count_x < len(list_x):
                 rand_coord_x = random.choice(list_x)
-                count_x+=1
-                if(rand_coord_x not in no_repeat_check_x):    
+                count_x += 1
+                if rand_coord_x not in no_repeat_check_x:
                     no_repeat_check_x.append(rand_coord_x)
-                    return(rand_coord_x)
-                    break
-            return  int(sx(120))
-        def rand_generator_y():  
-            count_y=0   
-            while(count_y<len(list_y)):
-                count_y+=1
+                    return rand_coord_x
+            return  int(sx(1000))
+
+        def rand_generator_y():
+            count_y = 0
+            while count_y < len(list_y):
+                count_y += 1
                 rand_coord_y = random.choice(list_y)
-                if(rand_coord_y not in no_repeat_check_y):    
+                if rand_coord_y not in no_repeat_check_y:
                     no_repeat_check_y.append(rand_coord_y)
-                    return(rand_coord_y)
-                    break
-            return int(sx(-3))                                            
+                    return rand_coord_y 
+            return int(sx(-70))
+            
         self.preguntas = pygame.sprite.Group()
         ans_x_coord = rand_generator_x()
         ans_y_coord = rand_generator_y()
         self.preguntas.add(number(ans_x_coord,ans_y_coord, fuente.render(self.resultado,True,
-                                (random.randint(0,255),random.randint(0,255),random.randint(0,255))),True))                      
+                                (random.randint(0,255),random.randint(0,255),random.randint(0,255))),True))
         for i in range(0,5):
             if random.randint(0,1) == 0:
-                wrong = str(int(self.resultado) - random.randint(1,10)) 
+                wrong = str(int(self.resultado) - random.randint(1,10))
             else:
-                wrong = str(int(self.resultado) + random.randint(1,10))        
+                wrong = str(int(self.resultado) + random.randint(1,10))
             wrong_x_coord = rand_generator_x()
             wrong_y_coord = rand_generator_y()
             image_wrong = fuente.render(wrong,True,(random.randint(0,255),random.randint(0,255),random.randint(0,255)))
