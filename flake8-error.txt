@@ -1,0 +1,334 @@
+/Users/saurabhag/jamath-activity/juego.py:7:1: E402 module level import not at top of file
+/Users/saurabhag/jamath-activity/juego.py:8:1: E402 module level import not at top of file
+/Users/saurabhag/jamath-activity/juego.py:9:1: E402 module level import not at top of file
+/Users/saurabhag/jamath-activity/juego.py:10:1: E402 module level import not at top of file
+/Users/saurabhag/jamath-activity/juego.py:10:1: F403 'from pygame.locals import *' used; unable to detect undefined names
+/Users/saurabhag/jamath-activity/juego.py:11:1: E402 module level import not at top of file
+/Users/saurabhag/jamath-activity/juego.py:15:1: W293 blank line contains whitespace
+/Users/saurabhag/jamath-activity/juego.py:16:22: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:16:24: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:16:26: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:16:32: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:19:21: F405 'Rect' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:19:28: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:19:31: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:19:55: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:19:80: E501 line too long (80 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:22:20: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:22:25: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:22:29: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:23:36: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:23:38: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:23:46: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:23:48: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:23:58: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:24:28: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:28:1: W293 blank line contains whitespace
+/Users/saurabhag/jamath-activity/juego.py:31:36: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:31:38: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:31:46: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:31:49: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:31:59: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:32:23: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:32:27: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:32:29: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:32:33: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:32:35: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:32:39: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:32:41: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:33:21: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:33:25: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:33:27: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:33:31: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:33:33: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:33:37: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:33:39: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:34:36: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:35:44: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:36:44: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:37:80: E501 line too long (112 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:37:97: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:37:102: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:37:107: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:37:109: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:38:80: E501 line too long (81 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:40:1: W293 blank line contains whitespace
+/Users/saurabhag/jamath-activity/juego.py:42:62: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:43:34: E128 continuation line under-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:43:61: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:44:34: E128 continuation line under-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:44:62: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:45:34: E128 continuation line under-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:45:51: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:45:56: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:45:73: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:45:78: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:45:80: E501 line too long (108 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:45:95: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:45:102: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:46:40: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:47:32: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:48:67: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:50:67: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:46: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:51: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:80: E501 line too long (119 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:51:91: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:96: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:51:113: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:52:66: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:52:80: E501 line too long (121 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:52:80: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:52:98: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:52:102: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:52:114: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:55:25: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:56:6: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:56:6: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:61:49: F405 'scale_x' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:61:71: F405 'scale_y' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:61:80: E501 line too long (80 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:62:6: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:63:11: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:63:11: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:64:6: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:65:6: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:67:1: E302 expected 2 blank lines, found 1
+/Users/saurabhag/jamath-activity/juego.py:74:5: E303 too many blank lines (2)
+/Users/saurabhag/jamath-activity/juego.py:75:5: E301 expected 1 blank line, found 0
+/Users/saurabhag/jamath-activity/juego.py:76:26: F405 'scale_x' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:79:26: F405 'scale_y' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:83:47: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:83:52: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:83:55: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:83:57: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:84:47: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:84:52: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:84:55: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:84:57: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:85:46: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:85:51: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:85:54: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:85:56: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:90:32: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:90:34: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:92:35: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:92:44: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:93:35: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:93:44: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:94:34: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:94:43: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:100:34: F405 'QUIT' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:103:36: F405 'MOUSEMOTION' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:104:80: E501 line too long (98 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:105:80: E501 line too long (96 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:106:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:106:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:106:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:106:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:106:72: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:106:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:107:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:107:41: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:107:49: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:108:30: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:109:80: E501 line too long (100 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:110:26: E127 continuation line over-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:110:80: E501 line too long (96 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:111:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:111:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:111:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:111:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:111:72: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:111:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:111:80: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:112:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:112:41: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:112:49: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:113:30: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:114:80: E501 line too long (99 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:115:26: E127 continuation line over-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:115:80: E501 line too long (95 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:116:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:116:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:116:63: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:116:68: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:116:71: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:116:73: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:116:79: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:117:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:117:41: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:117:49: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:118:30: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:119:36: F405 'MOUSEBUTTONDOWN' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:121:80: E501 line too long (102 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:122:5: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:122:80: E501 line too long (99 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:124:80: E501 line too long (104 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:125:29: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:125:80: E501 line too long (99 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:127:80: E501 line too long (103 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:128:29: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:128:80: E501 line too long (98 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:130:35: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:134:5: E303 too many blank lines (2)
+/Users/saurabhag/jamath-activity/juego.py:135:1: W293 blank line contains whitespace
+/Users/saurabhag/jamath-activity/juego.py:137:47: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:137:52: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:137:55: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:137:57: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:138:47: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:138:52: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:138:55: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:138:57: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:139:51: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:139:56: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:139:59: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:139:61: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:143:32: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:143:34: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:145:35: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:145:44: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:146:35: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:146:44: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:147:37: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:147:46: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:153:34: F405 'QUIT' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:156:36: F405 'MOUSEMOTION' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:157:80: E501 line too long (98 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:158:80: E501 line too long (96 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:159:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:159:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:159:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:159:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:159:72: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:159:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:159:80: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:160:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:160:41: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:160:49: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:161:30: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:162:80: E501 line too long (100 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:163:26: E127 continuation line over-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:163:80: E501 line too long (96 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:164:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:164:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:164:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:164:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:164:72: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:164:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:164:80: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:165:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:165:41: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:165:49: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:166:30: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:166:48: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:167:80: E501 line too long (102 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:168:26: E127 continuation line over-indented for visual indent
+/Users/saurabhag/jamath-activity/juego.py:168:80: E501 line too long (98 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:169:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:169:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:169:68: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:169:73: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:169:76: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:169:78: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:169:80: E501 line too long (83 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:169:84: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:170:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:170:41: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:170:49: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:171:30: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:173:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:173:26: E117 over-indented
+/Users/saurabhag/jamath-activity/juego.py:173:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:173:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:173:72: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:173:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:174:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:174:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:174:69: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:174:72: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:174:74: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:175:26: E111 indentation is not a multiple of     
+/Users/saurabhag/jamath-activity/juego.py:175:68: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:175:73: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:175:76: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:175:78: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:175:80: E501 line too long (83 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:176:36: F405 'MOUSEBUTTONDOWN' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:178:80: E501 line too long (102 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:179:5: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:179:80: E501 line too long (99 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:182:80: E501 line too long (104 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:183:29: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:183:80: E501 line too long (99 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:186:80: E501 line too long (106 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:187:29: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:187:80: E501 line too long (101 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:189:41: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:190:36: F405 'KEYDOWN' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:191:37: F405 'K_ESCAPE' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:197:9: F841 local variable 'NUM_IMAGES' is assigned to but never used
+/Users/saurabhag/jamath-activity/juego.py:198:1: W293 blank line contains whitespace
+/Users/saurabhag/jamath-activity/juego.py:199:29: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:199:33: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:199:41: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:199:45: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:199:55: E231 missing whitespace after ':'
+/Users/saurabhag/jamath-activity/juego.py:205:38: E225 missing whitespace around operator
+/Users/saurabhag/jamath-activity/juego.py:209:28: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:215:36: E225 missing whitespace around operator
+/Users/saurabhag/jamath-activity/juego.py:217:32: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:221:13: E265 block comment should start with '# '
+/Users/saurabhag/jamath-activity/juego.py:223:50: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:223:68: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:223:73: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:225:32: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:225:34: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:225:38: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:226:35: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:226:38: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:227:76: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:227:80: E501 line too long (102 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:227:81: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:227:84: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:227:86: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:227:90: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:227:99: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:228:80: E501 line too long (120 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:228:94: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:228:99: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:228:102: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:228:104: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:228:108: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:228:117: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:229:55: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:229:64: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:230:56: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:236:34: F405 'QUIT' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:240:34: F405 'MOUSEBUTTONDOWN' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:243:80: E501 line too long (110 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:244:5: E125 continuation line with same indent as next logical line
+/Users/saurabhag/jamath-activity/juego.py:244:80: E501 line too long (107 > 79 characters)
+/Users/saurabhag/jamath-activity/juego.py:245:45: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:246:52: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:251:52: E711 comparison to None should be 'if cond is not None:'
+/Users/saurabhag/jamath-activity/juego.py:251:60: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:255:34: F405 'KEYDOWN' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:256:37: F405 'K_ESCAPE' may be undefined, or defined from star imports: pygame.locals
+/Users/saurabhag/jamath-activity/juego.py:290:1: E303 too many blank lines (3)
+/Users/saurabhag/jamath-activity/juego.py:291:1: E302 expected 2 blank lines, found 3
+/Users/saurabhag/jamath-activity/juego.py:292:31: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:296:5: E722 do not use bare 'except'
+/Users/saurabhag/jamath-activity/juego.py:297:50: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:300:1: E302 expected 2 blank lines, found 1
+/Users/saurabhag/jamath-activity/juego.py:301:43: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:311:30: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:315:1: E302 expected 2 blank lines, found 1
+/Users/saurabhag/jamath-activity/juego.py:316:43: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:320:34: E231 missing whitespace after ','
+/Users/saurabhag/jamath-activity/juego.py:324:9: E722 do not use bare 'except'
+/Users/saurabhag/jamath-activity/juego.py:326:10: W291 trailing whitespace
+/Users/saurabhag/jamath-activity/juego.py:328:1: W391 blank line at end of file
