@@ -155,7 +155,7 @@ class Game():
                             "JUGAR", True, (0, 0, 255))
                         if sonido_menu is not None:
                             sonido_menu.play()
-                    elif event.pos[0] > sx(550) and event.pos[0] < sx(450) +sgit fe level.get_width() and \
+                    elif event.pos[0] > sx(550) and event.pos[0] < sx(450) + level.get_width() and \
                             event.pos[1] > sy(200) and event.pos[1] < sy(200) + level.get_height():
                         level = self.fuente_130.render(
                             "NIVEL", True, (0, 0, 255))
@@ -274,7 +274,7 @@ class Game():
                     wrong_sound.play()
                 another_quest = True
             # esto va?
-            #score -= 7
+            # score -= 7
 
             nueva_expresion.preguntas.update(
                 time, random.randint(80, 155), level)
