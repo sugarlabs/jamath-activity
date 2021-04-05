@@ -2,7 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from pygame.locals import *
+from pygame.locals import Rect
+from pygame.locals import scale_x
+from pygame.locals import scale_y
+from pygame.locals import QUIT
+from pygame.locals import MOUSEBUTTONDOWN
+from pygame.locals import MOUSEMOTION
+from pygame.locals import K_ESCAPE
+from pygame.locals import KEYDOWN
 import pygame
 import random
 from gi.repository import Gtk
@@ -284,8 +291,6 @@ class Game():
             pygame.display.update()
 
     def play(self, level):
-        NUM_IMAGES = 1
-
         die_point = {"facil": 200, "medio": 100, "dificil": 60}
 
         another_quest = True
