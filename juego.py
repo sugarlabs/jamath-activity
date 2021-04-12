@@ -334,8 +334,8 @@ class Game():
             self.screen.blit(
                 self.fuente_32.render(
                     "Timer : " + str(countdown_time),
-                     True,
-                     (0, 0, 0)),
+                    True,
+                    (0, 0, 0)),
                  (sx(950), 0))
             while Gtk.events_pending():
                 Gtk.main_iteration()
@@ -436,27 +436,35 @@ class Game():
                     self.running = False
                     return
                 elif event.type == MOUSEMOTION:
-                    if event.pos[0] > sx(350) and event.pos[0] < sx(350) + \
+                    if event.pos[0] > sx(350) and \
+                            event.pos[0] < sx(350) + \
                             gameover.get_width() and \
-                            event.pos[1] > sy(100) and event.pos[1] < sy(100) + \
+                            event.pos[1] > sy(100) and \
+                            event.pos[1] < sy(100) + \
                             gameover.get_height():
                         gameover = self.fuente_130.render(
                             "GAME OVER!!", True, (255, 0, 0))
-                    elif event.pos[0] > sx(350) and event.pos[0] < sx(350) + \
+                    elif event.pos[0] > sx(350) and \
+                            event.pos[0] < sx(350) + \
                             score_display.get_width() and \
-                            event.pos[1] > sy(400) and event.pos[1] < sy(400) + \
+                            event.pos[1] > sy(400) and \
+                            event.pos[1] < sy(400) + \
                             score_display.get_height():
                         score_display = self.fuente_130.render(
                             "Your Score: " + str(score), True, (0, 0, 128))
-                    elif event.pos[0] > sx(350) and event.pos[0] < sx(350) + \
+                    elif event.pos[0] > sx(350) and \
+                            event.pos[0] < sx(350) + \
                             high_score_display.get_width() and \
-                            event.pos[1] > sy(550) and event.pos[1] < sy(550) + \
+                            event.pos[1] > sy(550) and \
+                            event.pos[1] < sy(550) + \
                             high_score_display.get_height():
                         high_score_display = self.fuente_130.render(
                             "high Score: " + str(high_score), True, (0, 0, 128))
-                    elif event.pos[0] > sx(470) and event.pos[0] < sx(470) + \
+                    elif event.pos[0] > sx(470) and \
+                            event.pos[0] < sx(470) + \
                             quit.get_width() and \
-                            event.pos[1] > sy(700) and event.pos[1] < sy(700) + \
+                            event.pos[1] > sy(700) and \
+                            event.pos[1] < sy(700) + \
                             quit.get_height():
                         quit = self.fuente_130.render(
                             "EXIT", True, (0, 0, 0))
@@ -464,18 +472,22 @@ class Game():
                             sonido_menu.play()
 
                     if score >= high_score:
-                        if event.pos[0] > sx(170) and event.pos[0] < sx(170) + \
+                        if event.pos[0] > sx(170) and \
+                                event.pos[0] < sx(170) + \
                                 win.get_width() and \
-                                event.pos[1] > sy(250) and event.pos[1] < sy(250) + \
+                                event.pos[1] > sy(250) and \
+                                event.pos[1] < sy(250) + \
                                 win.get_height():
                             win = self.fuente_130.render(
                                 "Hurray! you WON:)", True, (200, 200, 100))
                             if sonido_menu is not None:
                                 sonido_menu.play()
                     else:
-                        if event.pos[0] > sx(170) and event.pos[0] < sx(170) + \
+                        if event.pos[0] > sx(170) and \
+                                event.pos[0] < sx(170) + \
                                 lose.get_width() and \
-                                event.pos[1] > sy(250) and event.pos[1] < sy(250) + \
+                                event.pos[1] > sy(250) and \
+                                event.pos[1] < sy(250) + \
                                 lose.get_height():
                             lose = self.fuente_130.render(
                                 "Alas! you lost:(", True, (200, 200, 100))
@@ -484,9 +496,11 @@ class Game():
 
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > sx(470) and event.pos[0] < sx(470) + \
+                        if event.pos[0] > sx(470) and \
+                                event.pos[0] < sx(470) + \
                                 quit.get_width() and \
-                                event.pos[1] > sy(700) and event.pos[1] < sy(700) + \
+                                event.pos[1] > sy(700) and \
+                                event.pos[1] < sy(700) + \
                                 quit.get_height():
                             quit = self.fuente_130.render(
                                 "EXIT", True, (0, 0, 0))
