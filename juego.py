@@ -343,9 +343,8 @@ class Game():
                 break
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    save_puntuacionalta(score, self.activity_root)
                     self.running = False
-                    return
+                    return score, puntuacionalta
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
@@ -370,6 +369,8 @@ class Game():
                         return 0
             if current_time <= 0.0:
                 self.game_over(score, puntuacionalta)
+                save_puntuacionalta(score, self.activity_root)
+                return score, puntuacionalta               
             pygame.display.update()
 
     def run(self):
@@ -394,18 +395,22 @@ class Game():
 
         self.fondo = cargar_imagen('data/1.jpg')
         self.screen.blit(self.fondo, (0, 0))
-
+        play_again = 0
         pygame.display.flip()
-        while self.running:
+        while self.running or play_again == 1:
+            play_again = 0
             level = self.main()
-            self.play(level)
+            score, puntuacionalta = self.play(level)
+            play_again = self.game_over(score, puntuacionalta)
 
     def game_over(self, score, high_score):
         sonido_menu = load_sound("menu.ogg")
         gameover = self.fuente_130.render("GAME OVER!!", True, (255, 0, 0))
         quit = self.fuente_130.render("EXIT", True, (0, 0, 0))
+        play_again = self.fuente_130.render("play again", True, (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         if score >= high_score:
+            high_score = score
             win = self.fuente_130.render(
                 "Hurray! you WON:)", True, (200, 200, 100))
         else:
@@ -421,7 +426,8 @@ class Game():
             self.screen.blit(gameover, (sx(350), sy(100)))
             self.screen.blit(score_display, (sx(350), sy(400)))
             self.screen.blit(high_score_display, (sx(350), sy(550)))
-            self.screen.blit(quit, (sx(470), sy(700)))
+            self.screen.blit(quit, (sx(800), sy(700)))
+            self.screen.blit(play_again, (sx(150), (sy(700))))
             if score >= high_score:
                 self.screen.blit(win, (sx(170), sy(250)))
             else:
@@ -459,13 +465,19 @@ class Game():
                             event.pos[1] < sy(550) + \
                             high_score_display.get_height():
                         high_score_display = self.fuente_130.render(
-                            "high Score: " + str(high_score), True, (0, 0, 128))
-                    elif event.pos[0] > sx(470) and \
-                            event.pos[0] < sx(470) + \
-                            quit.get_width() and \
-                            event.pos[1] > sy(700) and \
-                            event.pos[1] < sy(700) + \
-                            quit.get_height():
+                            "high Score: " + str(high_score),
+                            True,
+                            (0, 0, 128))
+                    elif event.pos[0] > sx(150) and event.pos[0] < sx(150) + \
+                            play_again.get_width() and \
+                            event.pos[1] > sy(700) and event.pos[1] < sy(700) \
+                            + play_again.get_height():
+                         play_again = self.fuente_130.render(
+                             "play again", True, (0, 0, 0))
+                    elif event.pos[0] > sx(800) and event.pos[0] < sx(800) \
+                            + quit.get_width() and \
+                            event.pos[1] > sy(700) and event.pos[1] < sy(700) \
+                            + quit.get_height():       
                         quit = self.fuente_130.render(
                             "EXIT", True, (0, 0, 0))
                         if sonido_menu is not None:
@@ -496,12 +508,20 @@ class Game():
 
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > sx(470) and \
-                                event.pos[0] < sx(470) + \
+                        if event.pos[0] > sx(150) and \
+                                event.pos[0] < sx(150) + \
+                                play_again.get_width() and \
+                                event.pos[1] > sy(700) and \
+                                event.pos[1] < sy(700) \
+                                + play_again.get_height():
+                            play_again = 1
+                            return play_again
+                         if event.pos[0] > sx(800) and \
+                                event.pos[0] < sx(800) + \
                                 quit.get_width() and \
                                 event.pos[1] > sy(700) and \
-                                event.pos[1] < sy(700) + \
-                                quit.get_height():
+                                event.pos[1] < sy(700) \
+                                + quit.get_height():
                             quit = self.fuente_130.render(
                                 "EXIT", True, (0, 0, 0))
                             self.running = False
