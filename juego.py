@@ -3,7 +3,12 @@
 
 import time
 import logging
-from pygame.locals import *
+from pygame.locals import Rect
+from pygame.locals import QUIT
+from pygame.locals import MOUSEBUTTONDOWN
+from pygame.locals import MOUSEMOTION
+from pygame.locals import K_ESCAPE
+from pygame.locals import KEYDOWN
 import pygame
 import random
 from gi.repository import Gtk
@@ -287,7 +292,6 @@ class Game():
     def play(self, level):
         max_time_limit = 60.00
         start_time = time.time()
-        NUM_IMAGES = 1
 
         die_point = {"facil": 200, "medio": 100, "dificil": 60}
 
@@ -407,7 +411,7 @@ class Game():
         sonido_menu = load_sound("menu.ogg")
         gameover = self.fuente_130.render("GAME OVER!!", True, (255, 0, 0))
         quit = self.fuente_130.render("EXIT", True, (0, 0, 0))
-        play_again = self.fuente_130.render("play again", True, (0, 0, 0))
+        play_again = self.fuente_130.render("PLAY AGAIN", True, (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         if score >= high_score:
             high_score = score
@@ -473,7 +477,7 @@ class Game():
                             event.pos[1] > sy(700) and event.pos[1] < sy(700) \
                             + play_again.get_height():
                          play_again = self.fuente_130.render(
-                             "play again", True, (0, 0, 0))
+                             "PLAY AGAIN", True, (0, 0, 0))
                     elif event.pos[0] > sx(800) and event.pos[0] < sx(800) \
                             + quit.get_width() and \
                             event.pos[1] > sy(700) and event.pos[1] < sy(700) \
@@ -502,7 +506,7 @@ class Game():
                                 event.pos[1] < sy(250) + \
                                 lose.get_height():
                             lose = self.fuente_130.render(
-                                "Alas! you lost:(", True, (200, 200, 100))
+                                "Alas! you LOST:(", True, (200, 200, 100))
                             if sonido_menu is not None:
                                 sonido_menu.play()
 
