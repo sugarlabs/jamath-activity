@@ -353,11 +353,11 @@ class Game():
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
                             if event.pos[0] > i.rect.x and \
-                                    event.pos[0] < i.rect.x + \
-                                    i.image.get_width() \
+                                    event.pos[0] < i.rect.x \
+                                    + i.image.get_width() \
                                     and event.pos[1] > i.rect.y and \
-                                    event.pos[1] < i.rect.y + \
-                                    i.image.get_height():
+                                    event.pos[1] < i.rect.y \
+                                    + i.image.get_height():
                                 if i.answer:
                                     if right_sound is not None:
                                         right_sound.play()
@@ -447,33 +447,33 @@ class Game():
                     return
                 elif event.type == MOUSEMOTION:
                     if event.pos[0] > sx(350) and \
-                            event.pos[0] < sx(350) + \
-                            gameover.get_width() and \
+                            event.pos[0] < sx(350) \
+                            + gameover.get_width() and \
                             event.pos[1] > sy(100) and \
-                            event.pos[1] < sy(100) + \
-                            gameover.get_height():
+                            event.pos[1] < sy(100) \
+                            + gameover.get_height():
                         gameover = self.fuente_130.render(
                             "GAME OVER!!", True, (255, 0, 0))
                     elif event.pos[0] > sx(350) and \
-                            event.pos[0] < sx(350) + \
-                            score_display.get_width() and \
+                            event.pos[0] < sx(350) \
+                            + score_display.get_width() and \
                             event.pos[1] > sy(400) and \
-                            event.pos[1] < sy(400) + \
-                            score_display.get_height():
+                            event.pos[1] < sy(400) \
+                            + score_display.get_height():
                         score_display = self.fuente_130.render(
                             "Your Score: " + str(score), True, (0, 0, 128))
                     elif event.pos[0] > sx(350) and \
-                            event.pos[0] < sx(350) + \
-                            high_score_display.get_width() and \
+                            event.pos[0] < sx(350) \
+                            + high_score_display.get_width() and \
                             event.pos[1] > sy(550) and \
-                            event.pos[1] < sy(550) + \
-                            high_score_display.get_height():
+                            event.pos[1] < sy(550) \
+                            + high_score_display.get_height():
                         high_score_display = self.fuente_130.render(
                             "high Score: " + str(high_score),
                             True,
                             (0, 0, 128))
-                    elif event.pos[0] > sx(150) and event.pos[0] < sx(150) + \
-                            play_again.get_width() and \
+                    elif event.pos[0] > sx(150) and event.pos[0] < sx(150) \
+                            + play_again.get_width() and \
                             event.pos[1] > sy(700) and event.pos[1] < sy(700) \
                             + play_again.get_height():
                          play_again = self.fuente_130.render(
@@ -489,22 +489,22 @@ class Game():
 
                     if score >= high_score:
                         if event.pos[0] > sx(170) and \
-                                event.pos[0] < sx(170) + \
-                                win.get_width() and \
+                                event.pos[0] < sx(170) \
+                                + win.get_width() and \
                                 event.pos[1] > sy(250) and \
-                                event.pos[1] < sy(250) + \
-                                win.get_height():
+                                event.pos[1] < sy(250) \
+                                + win.get_height():
                             win = self.fuente_130.render(
                                 "Hurray! you WON:)", True, (200, 200, 100))
                             if sonido_menu is not None:
                                 sonido_menu.play()
                     else:
                         if event.pos[0] > sx(170) and \
-                                event.pos[0] < sx(170) + \
-                                lose.get_width() and \
+                                event.pos[0] < sx(170) \
+                                + lose.get_width() and \
                                 event.pos[1] > sy(250) and \
-                                event.pos[1] < sy(250) + \
-                                lose.get_height():
+                                event.pos[1] < sy(250) \
+                                + lose.get_height():
                             lose = self.fuente_130.render(
                                 "Alas! you LOST:(", True, (200, 200, 100))
                             if sonido_menu is not None:
@@ -513,16 +513,16 @@ class Game():
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         if event.pos[0] > sx(150) and \
-                                event.pos[0] < sx(150) + \
-                                play_again.get_width() and \
+                                event.pos[0] < sx(150) \
+                                + play_again.get_width() and \
                                 event.pos[1] > sy(700) and \
                                 event.pos[1] < sy(700) \
                                 + play_again.get_height():
                             play_again = 1
                             return play_again
-                         if event.pos[0] > sx(800) and \
-                                event.pos[0] < sx(800) + \
-                                quit.get_width() and \
+                        if event.pos[0] > sx(800) and \
+                                event.pos[0] < sx(800) \
+                                + quit.get_width() and \
                                 event.pos[1] > sy(700) and \
                                 event.pos[1] < sy(700) \
                                 + quit.get_height():
