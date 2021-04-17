@@ -12,10 +12,11 @@ from pygame.locals import K_ESCAPE
 from pygame.locals import KEYDOWN
 import pygame
 import random
-from gi.repository import Gtk
-import os
 import gi
 gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+import os
+
 
 
 class number(pygame.sprite.Sprite):
