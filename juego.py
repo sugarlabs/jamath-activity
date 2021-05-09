@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import time
 import logging
 from pygame.locals import Rect
-from pygame.locals import scale_x
-from pygame.locals import scale_y
 from pygame.locals import QUIT
 from pygame.locals import MOUSEBUTTONDOWN
 from pygame.locals import MOUSEMOTION
@@ -27,9 +26,9 @@ class number(pygame.sprite.Sprite):
             (x, y), (self.image.get_width(), self.image.get_height()))
         self.answer = answer
 
-    def update(self, time, vel, level):
+    def update(self, time_to_iterate, vel, level):
         incremento_nivel = {"facil": 1, "medio": 2, "dificil": 3}
-        self.rect.move_ip(0, time * vel * incremento_nivel[level])
+        self.rect.move_ip(0, time_to_iterate * vel * incremento_nivel[level])
 
 
 class expresion:
@@ -43,17 +42,17 @@ class expresion:
         self.primero = str(random.randint(0, incremento_nivel[level]))
         self.segundo = str(random.randint(0, incremento_nivel[level]))
         self.expresion = fuente.render(
-                                    self.primero +
-                                    simbolo[operador] +
-                                    self.segundo +
-                                    " = ? ",
-                                    True,
-                                    (255, 0, 0))
+            self.primero +
+            simbolo[operador] +
+            self.segundo +
+            " = ? ",
+            True,
+            (255, 0, 0))
         self.resultado = str(
-                        eval(
-                            self.primero +
-                            operacion[operador] +
-                            self.segundo))
+            eval(
+                self.primero +
+                operacion[operador] +
+                self.segundo))
         self.vida = 0
 
         no_repeat_check_x = []
@@ -291,6 +290,9 @@ class Game():
             pygame.display.update()
 
     def play(self, level):
+        max_time_limit = 60.00
+        start_time = time.time()
+
         die_point = {"facil": 200, "medio": 100, "dificil": 60}
 
         another_quest = True
@@ -300,9 +302,15 @@ class Game():
         fondo = cargar_imagen("data/" + str(1) + ".jpg")
         score = 0
         puntuacionalta = load_puntuacionalta(self.activity_root)
-
+        current_time = max_time_limit
         while self.running:
-            time = self.clock.tick(30) / 1000.
+            self.screen.fill((0, 0, 0))
+            self.screen.blit(fondo, (0, 0))
+            if float(current_time) <= 00.10:
+                game_over()
+                break
+
+            time_to_iterate = self.clock.tick(30) / 1000.
             if another_quest:
                 nueva_expresion = expresion(level, self.fuente_60)
                 another_quest = False
@@ -316,44 +324,50 @@ class Game():
             # score -= 7
 
             nueva_expresion.preguntas.update(
-                time, random.randint(80, 155), level)
-
-            self.screen.fill((0, 0, 0))
-            self.screen.blit(fondo, (0, 0))
+                time_to_iterate, random.randint(80, 155), level)
             self.screen.blit(
                 self.fuente_32.render(
-                    "Puntaje: " + str(score), True, (0, 0, 0)), (sx(410), 0))
+                    "Puntaje : " + str(score), True, (0, 0, 0)), (sx(410), 0))
             self.screen.blit(
                 self.fuente_32.render(
-                    "Puntaje Mas Alto: " + str(puntuacionalta),
+                    "Puntaje Mas Alto : " + str(puntuacionalta),
                     True,
                     (0, 0, 0)),
                 (sx(600), 0))
             self.screen.blit(nueva_expresion.expresion, (sx(600), sy(750)))
             nueva_expresion.preguntas.draw(self.screen)
+            current_time = max_time_limit - (time.time() - start_time)
+            countdown_time = "{:.2f}".format(current_time)
+            self.screen.blit(
+                self.fuente_32.render(
+                    "Timer : " + str(countdown_time),
+                    True,
+                    (0, 0, 0)),
+                (sx(950), 0))
             while Gtk.events_pending():
                 Gtk.main_iteration()
             if not self.running:
                 break
+
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    save_puntuacionalta(score, self.activity_root)
                     self.running = False
                     return
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
                             if event.pos[0] > i.rect.x and \
-                                    event.pos[0] < i.rect.x + \
-                                    i.image.get_width() \
+                                    event.pos[0] < i.rect.x \
+                                    + i.image.get_width() \
                                     and event.pos[1] > i.rect.y and \
-                                    event.pos[1] < i.rect.y + \
-                                    i.image.get_height():
+                                    event.pos[1] < i.rect.y \
+                                    + i.image.get_height():
                                 if i.answer:
                                     if right_sound is not None:
                                         right_sound.play()
                                     another_quest = True
                                     score += 7
+
                                 else:
                                     if right_sound is not None:
                                         wrong_sound.play()
@@ -362,6 +376,88 @@ class Game():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return 0
+            save_puntuacionalta(score, self.activity_root)
+
+            def game_over():
+                response = 0
+                while response != 1:
+                    high_score = puntuacionalta
+                    gameover = self.fuente_60.render(
+                        "GAME OVER!!", True, (255, 0, 0), (0, 0, 0))
+                    play_again = self.fuente_60.render(
+                        "PLAY AGAIN", True, (0, 0, 0), (255, 0, 0))
+                    quit = self.fuente_60.render(
+                        "EXIT", True, (0, 0, 0), (255, 0, 0))
+                    if score >= high_score:
+                        high_score = score
+                        win = self.fuente_130.render(
+                            "Hurray! you WON:)",
+                            True,
+                            (200, 240, 100),
+                            (0, 0, 0))
+                        win_rect = win.get_rect()
+                        win_rect.center = (sx(500), sy(350))
+                    else:
+                        lose = self.fuente_130.render(
+                            "Alas! you LOST:(",
+                            True,
+                            (200, 240, 100),
+                            (0, 0, 0))
+                        lose_rect = lose.get_rect()
+                        lose_rect.center = (sx(600), sy(350))
+                    score_display = self.fuente_60.render(
+                        "Your Score: " + str(score),
+                        True,
+                        (0, 0, 0),
+                        (0, 0, 128))
+                    high_score_display = self.fuente_60.render(
+                        "high Score: " + str(high_score),
+                        True,
+                        (0, 0, 0),
+                        (0, 0, 128))
+                    gameover_rect = gameover.get_rect()
+                    gameover_rect.midtop = (sx(590), sy(100))
+                    score_display_rect = score_display.get_rect()
+                    score_display_rect.center = (sx(590), sy(500))
+                    high_score_display_rect = high_score_display.get_rect()
+                    high_score_display_rect.midbottom = (sx(590), sy(650))
+                    quit_rect = quit.get_rect()
+                    quit_rect.bottomleft = (sx(840), sy(780))
+                    play_again_rect = play_again.get_rect()
+                    play_again_rect.bottomright = (sx(420), sy(780))
+                    self.screen.blit(fondo, (0, 0))
+                    self.screen.blit(gameover, gameover_rect)
+                    self.screen.blit(score_display, score_display_rect)
+                    self.screen.blit(
+                        high_score_display, high_score_display_rect)
+                    self.screen.blit(quit, quit_rect)
+                    self.screen.blit(play_again, play_again_rect)
+                    if score >= puntuacionalta:
+                        self.screen.blit(win, win_rect)
+                    else:
+                        self.screen.blit(lose, lose_rect)
+                    pygame.display.flip()
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
+                    for event in pygame.event.get():
+                        if event.type == QUIT:
+                            self.running = False
+                            return
+                        if event.type == MOUSEBUTTONDOWN:
+                            if event.button == 1:
+                                if event.pos[0] > 190 and \
+                                        event.pos[0] < 445 and\
+                                        event.pos[1] > 580 and \
+                                        event.pos[1] < 645:
+                                    response = 1
+                                    return 0
+                                if event.pos[0] > 890 and \
+                                        event.pos[0] < 990 and\
+                                        event.pos[1] > 580 and \
+                                        event.pos[1] < 645:
+                                    self.running = False
+                                    response = 1
+                                    exit()
             pygame.display.update()
 
     def run(self):
@@ -386,7 +482,6 @@ class Game():
 
         self.fondo = cargar_imagen('data/1.jpg')
         self.screen.blit(self.fondo, (0, 0))
-
         pygame.display.flip()
         while self.running:
             level = self.main()
