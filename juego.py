@@ -304,9 +304,53 @@ class Game():
         puntuacionalta = load_puntuacionalta(self.activity_root)
         current_time = max_time_limit
         response = 0
+
         while self.running:
             self.screen.fill((0, 0, 0))
             self.screen.blit(fondo, (0, 0))
+            if response == 0:
+                time_to_iterate = self.clock.tick(30) / 1000.
+                if another_quest:
+                    nueva_expresion = expresion(level, self.fuente_60)
+                    another_quest = False
+
+                nueva_expresion.vida += 1
+                if nueva_expresion.vida > die_point[level]:
+                    if wrong_sound is not None:
+                        wrong_sound.play()
+                    another_quest = True
+                # esto va?
+                # score -= 7
+
+                nueva_expresion.preguntas.update(
+                    time_to_iterate, random.randint(80, 155), level)
+                self.screen.blit(
+                    self.fuente_32.render(
+                        "Puntaje : " + str(score),
+                        True,
+                        (0, 0, 0)),
+                    (sx(410), 0))
+                self.screen.blit(
+                    self.fuente_32.render(
+                        "Puntaje Mas Alto : " + str(puntuacionalta),
+                        True,
+                        (0, 0, 0)),
+                    (sx(600), 0))
+                self.screen.blit(nueva_expresion.expresion, (sx(600), sy(750)))
+                nueva_expresion.preguntas.draw(self.screen)
+                current_time = max_time_limit - (time.time() - start_time)
+                countdown_time = "{:.2f}".format(current_time)
+                self.screen.blit(
+                    self.fuente_32.render(
+                        "Timer : " + str(countdown_time),
+                        True,
+                        (0, 0, 0)),
+                    (sx(950), 0))
+
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+            if not self.running:
+                break
             if float(current_time) <= 00.10:
                 game_over()
                 response = 1
@@ -350,51 +394,10 @@ class Game():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return 0
-            if response == 0:
-                time_to_iterate = self.clock.tick(30) / 1000.
-                if another_quest:
-                    nueva_expresion = expresion(level, self.fuente_60)
-                    another_quest = False
-
-                nueva_expresion.vida += 1
-                if nueva_expresion.vida > die_point[level]:
-                    if wrong_sound is not None:
-                        wrong_sound.play()
-                    another_quest = True
-                # esto va?
-                # score -= 7
-
-                nueva_expresion.preguntas.update(
-                    time_to_iterate, random.randint(80, 155), level)
-                self.screen.blit(
-                    self.fuente_32.render(
-                        "Puntaje : " + str(score),
-                        True,
-                        (0, 0, 0)),
-                    (sx(410), 0))
-                self.screen.blit(
-                    self.fuente_32.render(
-                        "Puntaje Mas Alto : " + str(puntuacionalta),
-                        True,
-                        (0, 0, 0)),
-                    (sx(600), 0))
-                self.screen.blit(nueva_expresion.expresion, (sx(600), sy(750)))
-                nueva_expresion.preguntas.draw(self.screen)
-                current_time = max_time_limit - (time.time() - start_time)
-                countdown_time = "{:.2f}".format(current_time)
-                self.screen.blit(
-                    self.fuente_32.render(
-                        "Timer : " + str(countdown_time),
-                        True,
-                        (0, 0, 0)),
-                    (sx(950), 0))
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
-                if not self.running:
-                    break
                 save_puntuacionalta(score, self.activity_root)
 
             def game_over():
+
                 high_score = puntuacionalta
                 gameover = self.fuente_60.render(
                     "GAME OVER!!", True, (255, 0, 0), (0, 0, 0))
@@ -402,6 +405,8 @@ class Game():
                     "PLAY AGAIN", True, (0, 0, 0), (255, 0, 0))
                 quit = self.fuente_60.render(
                     "EXIT", True, (0, 0, 0), (255, 0, 0))
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
                 if score >= high_score:
                     high_score = score
                     win = self.fuente_130.render(
@@ -451,8 +456,6 @@ class Game():
                 else:
                     self.screen.blit(lose, lose_rect)
                 pygame.display.flip()
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
             pygame.display.update()
 
     def run(self):
