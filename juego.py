@@ -131,8 +131,9 @@ def cargar_imagen(nombre, trasnparent=False):
 
 class Game():
 
-    def __init__(self, get_activity_root):
+    def __init__(self, get_activity_root, activity):
         self.activity_root = get_activity_root
+        self.activity = activity
         pass
 
     global sx, sy
@@ -189,7 +190,7 @@ class Game():
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + jugar.get_height():
                         jugar = self.fuente_130.render(
-                            "JUGAR", True, (0, 255, 0), (0, 0, 0))
+                            "JUGAR", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -197,7 +198,7 @@ class Game():
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + level.get_height():
                         level = self.fuente_130.render(
-                            "NIVEL", True, (0, 255, 0), (0, 0, 0))
+                            "NIVEL", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -205,7 +206,7 @@ class Game():
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + quit.get_height():
                         quit = self.fuente_130.render(
-                            "SALIR", True, (0, 255, 0), (0, 0, 0))
+                            "SALIR", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -227,7 +228,7 @@ class Game():
                                 and event.pos[1] > sy(540) and \
                                 event.pos[1] < sy(540) + quit.get_height():
                             self.running = False
-                            sys.exit()
+                            self.activity.close()
             pygame.display.update()
 
     def choose_level(self):
@@ -341,7 +342,11 @@ class Game():
         puntuacionalta = load_puntuacionalta(self.activity_root)
         current_time = max_time_limit
         response = 0
-
+        sonido_menu = load_sound("menu.ogg")
+        play_again = self.fuente_60.render(
+            "jUEGA DE NUEVO", True, (0, 0, 0), (255, 0, 0))
+        quit_game = self.fuente_60.render(
+            "SALIR", True, (0, 0, 0), (255, 0, 0))
         while self.running:
             self.screen.fill((0, 0, 0))
             self.screen.blit(fondo, (0, 0))
@@ -395,7 +400,33 @@ class Game():
                 if event.type == QUIT:
                     self.running = False
                     return
-                if event.type == MOUSEBUTTONDOWN:
+                elif event.type == MOUSEMOTION:
+                    not_hover = True
+                    if not_hover:
+                        play_again = self.fuente_60.render(
+                            "jUEGA DE NUEVO", True, (0, 0, 255), (0, 0, 0))
+                        quit_game = self.fuente_60.render(
+                            "SALIR", True, (0, 0, 255), (0, 0, 0))
+
+                    if event.pos[0] > sx(60) and \
+                            event.pos[0] < sx(60) + play_again.get_width() and \
+                            event.pos[1] > sy(700) and \
+                            event.pos[1] < sy(700) + play_again.get_height():
+                        play_again = self.fuente_60.render(
+                            "jUEGA DE NUEVO", True, (122, 245, 61), (102, 110, 98))
+                        if sonido_menu is not None:
+                            sonido_menu.play()
+                    if event.pos[0] > sx(840) and \
+                            event.pos[0] < sx(840) + quit_game.get_width() and \
+                            event.pos[1] > sy(700) and \
+                            event.pos[1] < sy(700) + quit_game.get_height():
+                        quit_game = self.fuente_60.render(
+                            "SALIR", True, (122, 245, 61), (102, 110, 98))
+                        if sonido_menu is not None:
+                            sonido_menu.play()
+                    else:
+                        not_hover = True
+                elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
                             if event.pos[0] > i.rect.x and \
@@ -416,17 +447,17 @@ class Game():
                                     another_quest = True
                                     score -= 3
                         if response == 1:
-                            if event.pos[0] > 60 and \
-                                    event.pos[0] < 445 and\
-                                    event.pos[1] > 580 and \
-                                    event.pos[1] < 645:
-                                return 0
-                            if event.pos[0] > 890 and \
-                                    event.pos[0] < 990 and\
-                                    event.pos[1] > 580 and \
-                                    event.pos[1] < 645:
+                            if event.pos[0] > sx(60) and \
+                                    event.pos[0] < sx(60) + play_again.get_width() and \
+                                    event.pos[1] > sy(700) and \
+                                    event.pos[1] < sy(700) + play_again.get_height():
+                                return
+                            if event.pos[0] > sx(840) and \
+                                    event.pos[0] < sx(840) + quit_game.get_width() and \
+                                    event.pos[1] > sy(700) and \
+                                    event.pos[1] < sy(700) + quit_game.get_height():
                                 self.running = False
-                                sys.exit()
+                                self.activity.close()
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return 0
@@ -435,20 +466,16 @@ class Game():
             def game_over():
 
                 high_score = puntuacionalta
-                gameover = self.fuente_60.render(
-                    "JUEGO TERMINADO!!", True, (255, 0, 0), (0, 0, 0))
-                play_again = self.fuente_60.render(
-                    "jUEGA DE NUEVO", True, (0, 0, 0), (255, 0, 0))
-                quit = self.fuente_60.render(
-                    "SALIR", True, (0, 0, 0), (255, 0, 0))
                 while Gtk.events_pending():
                     Gtk.main_iteration()
+                gameover = self.fuente_60.render(
+                    "JUEGO TERMINADO!!", True, (255, 255, 255), (0, 0, 0))
                 if score >= high_score:
                     high_score = score
                     win = self.fuente_130.render(
                         "Hurra! ganaste :)",
                         True,
-                        (200, 240, 100),
+                        (237, 88, 235),
                         (0, 0, 0))
                     win_rect = win.get_rect()
                     win_rect.center = (sx(600), sy(350))
@@ -456,27 +483,27 @@ class Game():
                     lose = self.fuente_130.render(
                         "Ay! perdiste :(",
                         True,
-                        (200, 240, 100),
+                        (245, 17, 25),
                         (0, 0, 0))
                     lose_rect = lose.get_rect()
                     lose_rect.center = (sx(600), sy(350))
                 score_display = self.fuente_60.render(
                     "Puntacion: " + str(score),
                     True,
-                    (0, 0, 0),
-                    (0, 0, 128))
+                    (0, 255, 255),
+                    (0, 0, 0))
                 high_score_display = self.fuente_60.render(
                     "puntuacion alta: " + str(high_score),
                     True,
-                    (0, 0, 0),
-                    (0, 0, 128))
+                    (0, 255, 255),
+                    (0, 0, 0))
                 gameover_rect = gameover.get_rect()
                 gameover_rect.midtop = (sx(590), sy(100))
                 score_display_rect = score_display.get_rect()
                 score_display_rect.center = (sx(590), sy(500))
                 high_score_display_rect = high_score_display.get_rect()
                 high_score_display_rect.midbottom = (sx(590), sy(650))
-                quit_rect = quit.get_rect()
+                quit_rect = quit_game.get_rect()
                 quit_rect.bottomleft = (sx(840), sy(780))
                 play_again_rect = play_again.get_rect()
                 play_again_rect.bottomright = (sx(420), sy(780))
@@ -485,7 +512,7 @@ class Game():
                 self.screen.blit(score_display, score_display_rect)
                 self.screen.blit(
                     high_score_display, high_score_display_rect)
-                self.screen.blit(quit, quit_rect)
+                self.screen.blit(quit_game, quit_rect)
                 self.screen.blit(play_again, play_again_rect)
                 if score >= high_score:
                     self.screen.blit(win, win_rect)
