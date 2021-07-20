@@ -16,6 +16,7 @@ import os
 import gi
 import sys
 gi.require_version('Gtk', '3.0')
+from sugar3.activity.activity import get_activity_root
 
 
 class number(pygame.sprite.Sprite):
@@ -131,8 +132,7 @@ def cargar_imagen(nombre, trasnparent=False):
 
 class Game():
 
-    def __init__(self, get_activity_root, activity):
-        self.activity_root = get_activity_root
+    def __init__(self, activity):
         self.activity = activity
         pass
 
@@ -336,7 +336,7 @@ class Game():
         wrong_sound = load_sound("wrong.ogg")
         fondo = cargar_imagen("data/" + str(1) + ".jpg")
         score = 0
-        puntuacionalta = load_puntuacionalta(self.activity_root)
+        puntuacionalta = load_puntuacionalta()
         response = 0
         sonido_menu = load_sound("menu.ogg")
         play_again = self.fuente_60.render(
@@ -460,7 +460,7 @@ class Game():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return 0
-                save_puntuacionalta(score, self.activity_root)
+                save_puntuacionalta(score)
 
             def game_over():
 
@@ -560,8 +560,8 @@ def load_sound(name):
 # Funcion para guardar puntuaciones altas
 
 
-def save_puntuacionalta(score, activity_root):
-    file_path = os.path.join(activity_root, 'data', 'PuntajeAlto')
+def save_puntuacionalta(score):
+    file_path = os.path.join(get_activity_root(), 'data', 'PuntajeAlto')
     logging.debug(file_path)
     puntuacionalta = []
     puntuacionalta.append(0)
@@ -576,8 +576,8 @@ def save_puntuacionalta(score, activity_root):
         File.close()
 
 
-def load_puntuacionalta(activity_root):
-    file_path = os.path.join(activity_root, 'data', 'PuntajeAlto')
+def load_puntuacionalta():
+    file_path = os.path.join(get_activity_root(), 'data', 'PuntajeAlto')
     logging.debug(file_path)
     if os.path.exists(file_path):
         try:
