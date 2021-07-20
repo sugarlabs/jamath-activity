@@ -327,10 +327,7 @@ class Game():
                         return level
             pygame.display.update()
 
-    def play(self, level):
-        max_time_limit = 60.00
-        start_time = time.time()
-
+    def play(self, level):        
         die_point = {"facil": 200, "medio": 100, "dificil": 60}
 
         another_quest = True
@@ -340,13 +337,15 @@ class Game():
         fondo = cargar_imagen("data/" + str(1) + ".jpg")
         score = 0
         puntuacionalta = load_puntuacionalta(self.activity_root)
-        current_time = max_time_limit
         response = 0
         sonido_menu = load_sound("menu.ogg")
         play_again = self.fuente_60.render(
             "jUEGA DE NUEVO", True, (0, 0, 0), (255, 0, 0))
         quit_game = self.fuente_60.render(
             "SALIR", True, (0, 0, 0), (255, 0, 0))
+        max_time_limit = 60.00
+        start_time = time.time()
+        current_time = max_time_limit
         while self.running:
             self.screen.fill((0, 0, 0))
             self.screen.blit(fondo, (0, 0))
