@@ -14,7 +14,6 @@ import random
 from gi.repository import Gtk
 import os
 import gi
-import sys
 gi.require_version('Gtk', '3.0')
 from sugar3.activity.activity import get_activity_root
 
@@ -327,7 +326,7 @@ class Game():
                         return level
             pygame.display.update()
 
-    def play(self, level):        
+    def play(self, level):
         die_point = {"facil": 200, "medio": 100, "dificil": 60}
 
         another_quest = True
