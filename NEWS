@@ -1,4 +1,13 @@
+v4
 
+* Generate POT file (Ibiam Chihurumnaya)
+* Updated screenshots (Sourabha G)
+* Flake8 fixes (Sourabha G)
+* UI enhancement (Sourabha G)
+* Feature - Timer (Sourabha G)
+* Save and restore highscore from Journal (Sourabha G)
+* Feature - Gameover page, reset button, exit button (Sourabha G)
+* Fixed overlapping digits (Sourabha G)
 * Fix sound not loaded warning (Jui Pradhan)
 * Update to sugargame 1.3 (Jui Pradhan)
 * Port to python3 (Jui Pradhan)
