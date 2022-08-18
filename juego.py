@@ -31,7 +31,6 @@ class number(pygame.sprite.Sprite):
         incremento_nivel = {"facil": 1, "medio": 2, "dificil": 3}
         self.rect.move_ip(0, time_to_iterate * vel * incremento_nivel[level])
 
-
 class expresion:
 
     def __init__(self, level, fuente):
@@ -145,22 +144,22 @@ class Game():
 
     def main(self):
         sonido_menu = load_sound("menu.ogg")
-        jugar = self.fuente_130.render("JUGAR", True, (0, 0, 255), (0, 0, 0))
-        level = self.fuente_130.render("NIVEL", True, (0, 0, 255), (0, 0, 0))
-        quit = self.fuente_130.render("SALIR", True, (0, 0, 255), (0, 0, 0))
+        jugar = self.fuente_130.render(" PLAY ", True, (0, 0, 255), (0, 0, 0))
+        level = self.fuente_130.render("LEVEL ", True, (0, 0, 255), (0, 0, 0))
+        quit = self.fuente_130.render(" QUIT ", True, (0, 0, 255), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
         while self.running:
             self.screen.fill((0, 0, 0))
             jugar_rect = jugar.get_rect()
-            jugar_rect.x = sx(450)
+            jugar_rect.x = sx(475)
             jugar_rect.y = sy(180)
             level_rect = level.get_rect()
             level_rect.x = sx(475)
             level_rect.y = sy(360)
             quit_rect = jugar.get_rect()
-            quit_rect.x = sx(480)
+            quit_rect.x = sx(475)
             quit_rect.y = sy(540)
             self.screen.blit(fondo, (0, 0))
             self.screen.blit(jugar, jugar_rect)
@@ -178,18 +177,18 @@ class Game():
                     not_hover = True
                     if not_hover:
                         jugar = self.fuente_130.render(
-                            "JUGAR", True, (0, 0, 255), (0, 0, 0))
+                            " PLAY ", True, (0, 0, 255), (0, 0, 0))
                         level = self.fuente_130.render(
-                            "NIVEL", True, (0, 0, 255), (0, 0, 0))
+                            "LEVEL ", True, (0, 0, 255), (0, 0, 0))
                         quit = self.fuente_130.render(
-                            "SALIR", True, (0, 0, 255), (0, 0, 0))
+                            " QUIT ", True, (0, 0, 255), (0, 0, 0))
 
                     if event.pos[0] > sx(450) and \
                             event.pos[0] < sx(450) + jugar.get_width() and \
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + jugar.get_height():
                         jugar = self.fuente_130.render(
-                            "JUGAR", True, (122, 245, 61), (102, 110, 98))
+                            " PLAY ", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -197,7 +196,7 @@ class Game():
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + level.get_height():
                         level = self.fuente_130.render(
-                            "NIVEL", True, (122, 245, 61), (102, 110, 98))
+                            "LEVEL ", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -205,7 +204,7 @@ class Game():
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + quit.get_height():
                         quit = self.fuente_130.render(
-                            "SALIR", True, (122, 245, 61), (102, 110, 98))
+                            " QUIT ", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -234,20 +233,20 @@ class Game():
 
         sonido_menu = load_sound("menu.ogg")
         facil = self.fuente_130.render(
-            "facil", True, (0, 0, 255), (0, 0, 0))
+            " easy ", True, (0, 0, 255), (0, 0, 0))
         medio = self.fuente_130.render(
-            "medio", True, (0, 0, 255), (0, 0, 0))
+            "medium", True, (0, 0, 255), (0, 0, 0))
         dificil = self.fuente_130.render(
-            "dificil", True, (0, 0, 255), (0, 0, 0))
+            " hard ", True, (0, 0, 255), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         level = "facil"
         while self.running:
             self.screen.fill((0, 0, 0))
             facil_rect = facil.get_rect()
-            facil_rect.x = sx(497)
+            facil_rect.x = sx(470)
             facil_rect.y = sy(180)
             medio_rect = medio.get_rect()
-            medio_rect.x = sx(467)
+            medio_rect.x = sx(417)
             medio_rect.y = sy(360)
             dificil_rect = dificil.get_rect()
             dificil_rect.x = sx(465)
@@ -268,18 +267,18 @@ class Game():
                     not_hover = True
                     if not_hover:
                         facil = self.fuente_130.render(
-                            "facil", True, (0, 0, 255), (0, 0, 0))
+                            " easy ", True, (0, 0, 255), (0, 0, 0))
                         medio = self.fuente_130.render(
-                            "medio", True, (0, 0, 255), (0, 0, 0))
+                            "medium", True, (0, 0, 255), (0, 0, 0))
                         dificil = self.fuente_130.render(
-                            "dificil", True, (0, 0, 255), (0, 0, 0))
+                            " hard ", True, (0, 0, 255), (0, 0, 0))
 
                     if event.pos[0] > sx(450) and \
                             event.pos[0] < sx(450) + facil.get_width() and \
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + facil.get_height():
                         facil = self.fuente_130.render(
-                            "facil", True, (0, 255, 0), (0, 0, 0))
+                            " easy ", True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -287,7 +286,7 @@ class Game():
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + medio.get_height():
                         medio = self.fuente_130.render(
-                            "medio", True, (0, 255, 0), (0, 0, 0))
+                            "medium", True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -295,7 +294,7 @@ class Game():
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + dificil.get_height():
                         dificil = self.fuente_130.render(
-                            "dificil", True, (0, 255, 0), (0, 0, 0))
+                            " hard ", True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -339,9 +338,9 @@ class Game():
         response = 0
         sonido_menu = load_sound("menu.ogg")
         play_again = self.fuente_60.render(
-            "jUEGA DE NUEVO", True, (0, 0, 0), (255, 0, 0))
+            "Play Again", True, (0, 0, 0), (255, 0, 0))
         quit_game = self.fuente_60.render(
-            "SALIR", True, (0, 0, 0), (255, 0, 0))
+            "Quit", True, (0, 0, 0), (255, 0, 0))
         max_time_limit = 60.00
         start_time = time.time()
         current_time = max_time_limit
@@ -366,13 +365,13 @@ class Game():
                     time_to_iterate, random.randint(80, 155), level)
                 self.screen.blit(
                     self.fuente_32.render(
-                        "Puntaje : " + str(score),
+                        "Score : " + str(score),
                         True,
                         (0, 0, 0)),
                     (sx(410), 0))
                 self.screen.blit(
                     self.fuente_32.render(
-                        "Puntaje Mas Alto : " + str(puntuacionalta),
+                        "Highest : " + str(puntuacionalta),
                         True,
                         (0, 0, 0)),
                     (sx(600), 0))
@@ -382,7 +381,7 @@ class Game():
                 countdown_time = "{:.2f}".format(current_time)
                 self.screen.blit(
                     self.fuente_32.render(
-                        "Temporizador : " + str(countdown_time),
+                        "Timer : " + str(countdown_time),
                         True,
                         (0, 0, 0)),
                     (sx(930), 0))
@@ -402,16 +401,16 @@ class Game():
                     not_hover = True
                     if not_hover:
                         play_again = self.fuente_60.render(
-                            "jUEGA DE NUEVO", True, (0, 0, 255), (0, 0, 0))
+                            "Play Again", True, (0, 0, 255), (0, 0, 0))
                         quit_game = self.fuente_60.render(
-                            "SALIR", True, (0, 0, 255), (0, 0, 0))
+                            "Quit", True, (0, 0, 255), (0, 0, 0))
 
                     if event.pos[0] > sx(60) and \
                             event.pos[0] < sx(60) + play_again.get_width() and \
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + play_again.get_height():
                         play_again = self.fuente_60.render(
-                            "jUEGA DE NUEVO", True, (122, 245, 61), (102, 110, 98))
+                            "Play Again", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     if event.pos[0] > sx(840) and \
@@ -419,7 +418,7 @@ class Game():
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + quit_game.get_height():
                         quit_game = self.fuente_60.render(
-                            "SALIR", True, (122, 245, 61), (102, 110, 98))
+                            "Quit", True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -467,11 +466,11 @@ class Game():
                 while Gtk.events_pending():
                     Gtk.main_iteration()
                 gameover = self.fuente_60.render(
-                    "JUEGO TERMINADO!!", True, (255, 255, 255), (0, 0, 0))
+                    "Game Over!", True, (255, 255, 255), (0, 0, 0))
                 if score >= high_score:
                     high_score = score
                     win = self.fuente_130.render(
-                        "Hurra! ganaste :)",
+                        "Hurray! You Won :)",
                         True,
                         (237, 88, 235),
                         (0, 0, 0))
@@ -479,19 +478,19 @@ class Game():
                     win_rect.center = (sx(600), sy(350))
                 else:
                     lose = self.fuente_130.render(
-                        "Ay! perdiste :(",
+                        "Oh! You Lost :(",
                         True,
                         (245, 17, 25),
                         (0, 0, 0))
                     lose_rect = lose.get_rect()
                     lose_rect.center = (sx(600), sy(350))
                 score_display = self.fuente_60.render(
-                    "Puntacion: " + str(score),
+                    "Score: " + str(score),
                     True,
                     (0, 255, 255),
                     (0, 0, 0))
                 high_score_display = self.fuente_60.render(
-                    "puntuacion alta: " + str(high_score),
+                    "Highest: " + str(high_score),
                     True,
                     (0, 255, 255),
                     (0, 0, 0))
