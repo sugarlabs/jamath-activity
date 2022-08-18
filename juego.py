@@ -38,21 +38,23 @@ class expresion:
 
         incremento_nivel = {"facil": 9, "medio": 20, "dificil": 50}
         operacion = {1: "+", 2: "-", 3: "*", 4: "/"}
-        simbolo = {1: "+", 2: "-", 3: "X", 4: ":"}
-        operador = random.randint(2, 3)
+        self.fuente = fuente
+        self.simbolo = {1: "+", 2: "-", 3: "X", 4: ":"}
+        self.operador = random.randint(2, 3)
+        self.color = (255, 0, 0)
         self.primero = str(random.randint(0, incremento_nivel[level]))
         self.segundo = str(random.randint(0, incremento_nivel[level]))
         self.expresion = fuente.render(
             self.primero +
-            simbolo[operador] +
+            self.simbolo[self.operador] +
             self.segundo +
             " = ? ",
             True,
-            (255, 0, 0))
+            self.color)
         self.resultado = str(
             eval(
                 self.primero +
-                operacion[operador] +
+                operacion[self.operador] +
                 self.segundo))
         self.vida = 0
 
@@ -114,6 +116,17 @@ class expresion:
                     image_wrong,
                     False))
 
+    def update_expression(self, user):
+        self.expresion = self.fuente.render(
+            self.primero +
+            self.simbolo[self.operador] +
+            self.segundo +
+            " = " +
+            user,
+            True,
+            self.color
+        )
+
 
 def cargar_imagen(nombre, trasnparent=False):
     try:
@@ -133,7 +146,22 @@ class Game():
 
     def __init__(self, activity):
         self.activity = activity
-        pass
+        self.user = ""
+        self.keys = (
+            pygame.K_0,
+            pygame.K_1,
+            pygame.K_2,
+            pygame.K_3,
+            pygame.K_4,
+            pygame.K_5,
+            pygame.K_6,
+            pygame.K_7,
+            pygame.K_8,
+            pygame.K_9,
+            pygame.K_MINUS,
+            pygame.K_BACKSPACE,
+            pygame.K_RETURN,
+        )
 
     global sx, sy
 
@@ -459,6 +487,28 @@ class Game():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return 0
+                    if event.key in self.keys:
+                        if event.key == pygame.K_RETURN:
+                            if self.user == nueva_expresion.resultado:
+                                if right_sound is not None:
+                                    right_sound.play()
+                                score += 7
+                            else:
+                                if right_sound is not None:
+                                    wrong_sound.play()
+                                score -= 3
+                            another_quest = True
+                            self.user = ""
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.user = self.user[:-1]
+                        elif event.key == pygame.K_MINUS:
+                            if len(self.user) > 0 and self.user[0] == "-":
+                                self.user = self.user[1:]
+                            else:
+                                self.user = "-" + self.user
+                        else:
+                            self.user += pygame.key.name(event.key)
+                        nueva_expresion.update_expression(self.user)
                 save_puntuacionalta(score)
 
             def game_over():
