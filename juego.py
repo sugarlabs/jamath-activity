@@ -48,7 +48,7 @@ class expresion:
             self.segundo +
             " = ? ",
             True,
-            (255, 0, 0))
+            (255, 120, 120))
         self.resultado = str(
             eval(
                 self.primero +
@@ -368,14 +368,14 @@ class Game():
                     self.fuente_32.render(
                         "Puntaje : " + str(score),
                         True,
-                        (0, 0, 0)),
-                    (sx(410), 0))
+                        (120, 255, 120)),
+                    (sx(260), 0))
                 self.screen.blit(
                     self.fuente_32.render(
                         "Puntaje Mas Alto : " + str(puntuacionalta),
                         True,
-                        (0, 0, 0)),
-                    (sx(600), 0))
+                        (120, 255, 120)),
+                    (sx(450), 0))
                 self.screen.blit(nueva_expresion.expresion, (sx(200), sy(750)))
                 nueva_expresion.preguntas.draw(self.screen)
                 current_time = max_time_limit - (time.time() - start_time)
@@ -384,8 +384,8 @@ class Game():
                     self.fuente_32.render(
                         "Temporizador : " + str(countdown_time),
                         True,
-                        (0, 0, 0)),
-                    (sx(930), 0))
+                        (120, 255, 120)),
+                    (sx(780), 0))
 
             while Gtk.events_pending():
                 Gtk.main_iteration()
