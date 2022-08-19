@@ -86,15 +86,14 @@ class expresion:
             return int(sx(-70))
 
         self.preguntas = pygame.sprite.Group()
-        ans_x_coord = rand_generator_x()
-        ans_y_coord = rand_generator_y()
-        self.preguntas.add(
-            number(ans_x_coord, ans_y_coord,
+        self.correct_number = number(rand_generator_x(), rand_generator_y(),
                    fuente.render(
-                       self.resultado, True, (random.randint(0, 255),
-                                              random.randint(0, 255),
-                                              random.randint(0, 255))),
-                   True))
+                       self.resultado, True, (random.randint(100, 255),
+                                              random.randint(100, 255),
+                                              random.randint(100, 255))),
+                   True)
+        self.preguntas.add(self.correct_number)
+        self.wrong_numbers = []
         for i in range(0, 5):
             if random.randint(0, 1) == 0:
                 wrong = str(int(self.resultado) - random.randint(1, 10))
@@ -104,15 +103,15 @@ class expresion:
             wrong_y_coord = rand_generator_y()
             image_wrong = fuente.render(
                 wrong, True, (random.randint(
-                    0, 255), random.randint(
-                    0, 255), random.randint(
-                    0, 255)))
-            self.preguntas.add(
-                number(
+                    100, 255), random.randint(
+                    100, 255), random.randint(
+                    100, 255)))
+            self.wrong_numbers.append(number(
                     wrong_x_coord,
                     wrong_y_coord,
                     image_wrong,
                     False))
+        self.preguntas.add(*self.wrong_numbers)
 
 
 def cargar_imagen(nombre, trasnparent=False):
@@ -377,6 +376,8 @@ class Game():
                         (120, 255, 120)),
                     (sx(450), 0))
                 self.screen.blit(nueva_expresion.expresion, (sx(200), sy(750)))
+                for number in (nueva_expresion.correct_number, *nueva_expresion.wrong_numbers):
+                    pygame.draw.circle(self.screen, (40, 40, 40), number.rect.center, 50)
                 nueva_expresion.preguntas.draw(self.screen)
                 current_time = max_time_limit - (time.time() - start_time)
                 countdown_time = "{:.2f}".format(current_time)
