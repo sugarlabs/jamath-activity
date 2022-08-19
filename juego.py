@@ -58,12 +58,13 @@ class expresion:
 
         no_repeat_check_x = []
         no_repeat_check_y = []
-        list_y = [int(sx(-90)), int(sx(-80)), int(sx(-60)),
-                  int(sx(-50)), int(sx(-40)), int(sx(-30)),
-                  int(sx(-20)), int(sx(-10)), int(sx(-0))]
-        list_x = [int(sx(100)), int(sx(200)), int(sx(300)),
-                  int(sx(400)), int(sx(500)), int(sx(600)),
-                  int(sx(700)), int(sx(800)), int(sx(900))]
+        list_y = [int(sx(-120)), int(sx(-105)), int(sx(-90)),
+                  int(sx(-75)), int(sx(-60)), int(sx(-45)),
+                  int(sx(-30)), int(sx(-15)), int(sx(-0))]
+        list_x = [int(sx(80)), int(sx(200)), int(sx(320)),
+                  int(sx(440)), int(sx(560)), int(sx(680)),
+                  int(sx(700)), int(sx(820)), int(sx(940)),
+                  int(sx(1060))]
 
         def rand_generator_x():
             count_x = 0
