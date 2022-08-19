@@ -56,8 +56,6 @@ class expresion:
                 self.segundo))
         self.vida = 0
 
-        no_repeat_check_x = []
-        no_repeat_check_y = []
         list_y = [int(sx(-120)), int(sx(-105)), int(sx(-90)),
                   int(sx(-75)), int(sx(-60)), int(sx(-45)),
                   int(sx(-30)), int(sx(-15)), int(sx(-0))]
@@ -67,24 +65,14 @@ class expresion:
                   int(sx(1060))]
 
         def rand_generator_x():
-            count_x = 0
-            while count_x < len(list_x):
-                rand_coord_x = random.choice(list_x)
-                count_x += 1
-                if rand_coord_x not in no_repeat_check_x:
-                    no_repeat_check_x.append(rand_coord_x)
-                    return rand_coord_x
-            return int(sx(1000))
+            rand_coord_x = random.choice(list_x)
+            list_x.remove(rand_coord_x)
+            return rand_coord_x
 
         def rand_generator_y():
-            count_y = 0
-            while count_y < len(list_y):
-                count_y += 1
-                rand_coord_y = random.choice(list_y)
-                if rand_coord_y not in no_repeat_check_y:
-                    no_repeat_check_y.append(rand_coord_y)
-                    return rand_coord_y
-            return int(sx(-70))
+            rand_coord_y = random.choice(list_y)
+            list_x.remove(rand_coord_y)
+            return rand_coord_y
 
         self.preguntas = pygame.sprite.Group()
         self.correct_number = number(rand_generator_x(), rand_generator_y(),
