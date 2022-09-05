@@ -72,7 +72,7 @@ class expresion:
 
         def rand_generator_y():
             rand_coord_y = random.choice(list_y)
-            list_x.remove(rand_coord_y)
+            list_y.remove(rand_coord_y)
             return rand_coord_y
 
         self.preguntas = pygame.sprite.Group()
