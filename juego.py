@@ -133,27 +133,21 @@ class Game():
 
     def __init__(self, activity):
         self.activity = activity
-        self.locale = locale.getdefaultlocale()[0]
-        if self.locale not in ("en_US", "es_ES"):
-            self.locale = "en_US"
-        self.menu_texts = {
-            "en_US": ["PLAY", "LEVEL", "QUIT"],
-            "es_US": ["JUGAR", "NIVEL", "SALIR"],
-        }[self.locale]
-        self.difficuly_texts = {
-            "en_US": ["easy", "medium", "hard"],
-            "es_US": ["facil", "medio", "dificil"],
-        }[self.locale]
-        self.status_text = {
-            "en_US": ["Score : ", "Highest Score : ", "Timer : "],
-            "es_US": ["Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : "],
-        }[self.locale]
-        self.game_over_text = {
-            "en_US": ["PLAY AGAIN", "QUIT", "GAME OVER!!", "Hurray! you won :)","Ay! you lost :("],
-            "es_US": ["jUEGA DE NUEVO", "SALIR", "JUEGO TERMINADO!!", "Hurra! ganaste :)","Ay! perdiste :("],
-        }[self.locale]
+        self.locale = locale.getdefaultlocale()[0][:2]
+        if self.locale not in ("en", "es"):
+            self.locale = "en"
+        self.translations = {
+            "en": ["PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ","PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :("],
+            "es" : ["JUGAR", "NIVEL", "SALIR", "facil", "medio", "dificil", "Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : ", "jUEGA DE NUEVO", "JUEGO TERMINADO!!", "Hurra! ganaste :)", "Ay! perdiste :("],
+        }
+        
 
     global sx, sy
+
+    def get_translated_text(self, text):
+        if text in self.translations["en"]:
+            return self.translations[self.locale][self.translations["en"].index(text)]
+        return text
 
     def sx(coord_x):
         return coord_x * scale_x
@@ -163,9 +157,9 @@ class Game():
 
     def main(self):
         sonido_menu = load_sound("menu.ogg")
-        jugar = self.fuente_130.render(self.menu_texts[0], True, (0, 0, 255), (0, 0, 0))
-        level = self.fuente_130.render(self.menu_texts[1], True, (0, 0, 255), (0, 0, 0))
-        quit = self.fuente_130.render(self.menu_texts[2], True, (0, 0, 255), (0, 0, 0))
+        jugar = self.fuente_130.render(self.get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
+        level = self.fuente_130.render(self.get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
+        quit = self.fuente_130.render(self.get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
@@ -196,18 +190,18 @@ class Game():
                     not_hover = True
                     if not_hover:
                         jugar = self.fuente_130.render(
-                            self.menu_texts[0], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
                         level = self.fuente_130.render(
-                            self.menu_texts[1], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
                         quit = self.fuente_130.render(
-                            self.menu_texts[2], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
 
                     if event.pos[0] > sx(450) and \
                             event.pos[0] < sx(450) + jugar.get_width() and \
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + jugar.get_height():
                         jugar = self.fuente_130.render(
-                            self.menu_texts[0], True, (122, 245, 61), (102, 110, 98))
+                            self.get_translated_text("PLAY"), True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -215,7 +209,7 @@ class Game():
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + level.get_height():
                         level = self.fuente_130.render(
-                            self.menu_texts[1], True, (122, 245, 61), (102, 110, 98))
+                            self.get_translated_text("LEVEL"), True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -223,7 +217,7 @@ class Game():
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + quit.get_height():
                         quit = self.fuente_130.render(
-                            self.menu_texts[2], True, (122, 245, 61), (102, 110, 98))
+                            self.get_translated_text("QUIT"), True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -252,11 +246,11 @@ class Game():
 
         sonido_menu = load_sound("menu.ogg")
         facil = self.fuente_130.render(
-            self.difficuly_texts[0], True, (0, 0, 255), (0, 0, 0))
+            self.get_translated_text("easy"), True, (0, 0, 255), (0, 0, 0))
         medio = self.fuente_130.render(
-            self.difficuly_texts[1], True, (0, 0, 255), (0, 0, 0))
+            self.get_translated_text("medium"), True, (0, 0, 255), (0, 0, 0))
         dificil = self.fuente_130.render(
-            self.difficuly_texts[2], True, (0, 0, 255), (0, 0, 0))
+            self.get_translated_text("hard"), True, (0, 0, 255), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         level = "facil"
         while self.running:
@@ -286,18 +280,18 @@ class Game():
                     not_hover = True
                     if not_hover:
                         facil = self.fuente_130.render(
-                            self.difficuly_texts[0], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("easy"), True, (0, 0, 255), (0, 0, 0))
                         medio = self.fuente_130.render(
-                            self.difficuly_texts[1], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("medium"), True, (0, 0, 255), (0, 0, 0))
                         dificil = self.fuente_130.render(
-                            self.difficuly_texts[2], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("hard"), True, (0, 0, 255), (0, 0, 0))
 
                     if event.pos[0] > sx(450) and \
                             event.pos[0] < sx(450) + facil.get_width() and \
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + facil.get_height():
                         facil = self.fuente_130.render(
-                            self.difficuly_texts[0], True, (0, 255, 0), (0, 0, 0))
+                            self.get_translated_text("easy"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -305,7 +299,7 @@ class Game():
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + medio.get_height():
                         medio = self.fuente_130.render(
-                            self.difficuly_texts[1], True, (0, 255, 0), (0, 0, 0))
+                            self.get_translated_text("medium"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -313,7 +307,7 @@ class Game():
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + dificil.get_height():
                         dificil = self.fuente_130.render(
-                            self.difficuly_texts[2], True, (0, 255, 0), (0, 0, 0))
+                            self.get_translated_text("hard"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -357,9 +351,9 @@ class Game():
         response = 0
         sonido_menu = load_sound("menu.ogg")
         play_again = self.fuente_60.render(
-            self.game_over_text[0], True, (0, 0, 0), (255, 0, 0))
+            self.get_translated_text("PLAY AGAIN"), True, (0, 0, 0), (255, 0, 0))
         quit_game = self.fuente_60.render(
-            self.game_over_text[1], True, (0, 0, 0), (255, 0, 0))
+            self.get_translated_text("QUIT"), True, (0, 0, 0), (255, 0, 0))
         max_time_limit = 60.00
         start_time = time.time()
         current_time = max_time_limit
@@ -384,13 +378,13 @@ class Game():
                     time_to_iterate, random.randint(80, 155), level)
                 self.screen.blit(
                     self.fuente_32.render(
-                        self.status_text[0] + str(score),
+                        self.get_translated_text("Score : ") + str(score),
                         True,
                         (0, 0, 0)),
                     (sx(410), 0))
                 self.screen.blit(
                     self.fuente_32.render(
-                        self.status_text[1] + str(puntuacionalta),
+                        self.get_translated_text("Highest Score : ") + str(puntuacionalta),
                         True,
                         (0, 0, 0)),
                     (sx(600), 0))
@@ -400,7 +394,7 @@ class Game():
                 countdown_time = "{:.2f}".format(current_time)
                 self.screen.blit(
                     self.fuente_32.render(
-                        self.status_text[2] + str(countdown_time),
+                        self.get_translated_text("Timer : ") + str(countdown_time),
                         True,
                         (0, 0, 0)),
                     (sx(930), 0))
@@ -420,16 +414,16 @@ class Game():
                     not_hover = True
                     if not_hover:
                         play_again = self.fuente_60.render(
-                            self.game_over_text[0], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("PLAY AGAIN"), True, (0, 0, 255), (0, 0, 0))
                         quit_game = self.fuente_60.render(
-                            self.game_over_text[1], True, (0, 0, 255), (0, 0, 0))
+                            self.get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
 
                     if event.pos[0] > sx(60) and \
                             event.pos[0] < sx(60) + play_again.get_width() and \
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + play_again.get_height():
                         play_again = self.fuente_60.render(
-                            self.game_over_text[0], True, (122, 245, 61), (102, 110, 98))
+                            self.get_translated_text("PLAY AGAIN"), True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     if event.pos[0] > sx(840) and \
@@ -437,7 +431,7 @@ class Game():
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + quit_game.get_height():
                         quit_game = self.fuente_60.render(
-                            self.game_over_text[1], True, (122, 245, 61), (102, 110, 98))
+                            self.get_translated_text("QUIT"), True, (122, 245, 61), (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -485,11 +479,11 @@ class Game():
                 while Gtk.events_pending():
                     Gtk.main_iteration()
                 gameover = self.fuente_60.render(
-                    self.game_over_text[2], True, (255, 255, 255), (0, 0, 0))
+                    self.get_translated_text("GAME OVER!!"), True, (255, 255, 255), (0, 0, 0))
                 if score >= high_score:
                     high_score = score
                     win = self.fuente_130.render(
-                        self.game_over_text[3],
+                        self.get_translated_text("Hurray! you won :)"),
                         True,
                         (237, 88, 235),
                         (0, 0, 0))
@@ -497,19 +491,19 @@ class Game():
                     win_rect.center = (sx(600), sy(350))
                 else:
                     lose = self.fuente_130.render(
-                        self.game_over_text[4],
+                        self.get_translated_text("Ay! you lost :("),
                         True,
                         (245, 17, 25),
                         (0, 0, 0))
                     lose_rect = lose.get_rect()
                     lose_rect.center = (sx(600), sy(350))
                 score_display = self.fuente_60.render(
-                    self.status_text[0] + str(score),
+                    self.get_translated_text("Score : ") + str(score),
                     True,
                     (0, 255, 255),
                     (0, 0, 0))
                 high_score_display = self.fuente_60.render(
-                    self.status_text[1] + str(high_score),
+                    self.get_translated_text("Highest Score : ") + str(high_score),
                     True,
                     (0, 255, 255),
                     (0, 0, 0))
