@@ -176,6 +176,7 @@ class Game():
         jugar = self.fuente_130.render("JUGAR", True, (0, 0, 255), (0, 0, 0))
         level = self.fuente_130.render("NIVEL", True, (0, 0, 255), (0, 0, 0))
         quit = self.fuente_130.render("SALIR", True, (0, 0, 255), (0, 0, 0))
+        help = self.fuente_32.render("Selecciona la bola correcta para responder o escribe la respuesta usando el teclado", True, (0, 255, 0), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
@@ -190,10 +191,14 @@ class Game():
             quit_rect = jugar.get_rect()
             quit_rect.x = sx(480)
             quit_rect.y = sy(540)
+            help_rect = jugar.get_rect()
+            help_rect.x = sx(600) - help.get_rect().width/2
+            help_rect.y = sy(840)
             self.screen.blit(fondo, (0, 0))
             self.screen.blit(jugar, jugar_rect)
             self.screen.blit(level, level_rect)
             self.screen.blit(quit, quit_rect)
+            self.screen.blit(help, help_rect)
             while Gtk.events_pending():
                 Gtk.main_iteration()
             if not self.running:
