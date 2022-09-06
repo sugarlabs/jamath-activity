@@ -1,5 +1,7 @@
 # JAMath Activity #
 
+![Screenshot](screenshots/en/2.jpg)
+
 JAMath is a numbers game where the game tells you an addition, subtraction, multiplication or division and you have to click the results in the numbers that are falling down.
 
 How to use?
