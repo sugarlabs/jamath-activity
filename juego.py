@@ -62,8 +62,8 @@ class expresion:
                   int(sx(-30)), int(sx(-15)), int(sx(-0))]
         list_x = [int(sx(80)), int(sx(200)), int(sx(320)),
                   int(sx(440)), int(sx(560)), int(sx(680)),
-                  int(sx(700)), int(sx(820)), int(sx(940)),
-                  int(sx(1060))]
+                  int(sx(800)), int(sx(920)), int(sx(1040)),
+                  int(sx(1160))]
 
         def rand_generator_x():
             rand_coord_x = random.choice(list_x)
