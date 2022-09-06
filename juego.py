@@ -137,8 +137,8 @@ class Game():
         if self.locale not in ("en", "es"):
             self.locale = "en"
         self.translations = {
-            "en": ["PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ","PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :("],
-            "es" : ["JUGAR", "NIVEL", "SALIR", "facil", "medio", "dificil", "Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : ", "jUEGA DE NUEVO", "JUEGO TERMINADO!!", "Hurra! ganaste :)", "Ay! perdiste :("],
+            "en": ["PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ","PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :(", "Select correct ball to answer or type it using keyboard"],
+            "es" : ["JUGAR", "NIVEL", "SALIR", "facil", "medio", "dificil", "Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : ", "jUEGA DE NUEVO", "JUEGO TERMINADO!!", "Hurra! ganaste :)", "Ay! perdiste :(", "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado"],
         }
         self.user = ""
         self.keys = (
@@ -175,7 +175,7 @@ class Game():
         jugar = self.fuente_130.render(self.get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
         level = self.fuente_130.render(self.get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
         quit = self.fuente_130.render(self.get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
-        help = self.fuente_32.render("Selecciona la bola correcta para responder o escribe la respuesta usando el teclado", True, (0, 255, 0), (0, 0, 0))
+        help = self.fuente_32.render(self.get_translated_text("Select correct ball to answer or type it using keyboard"), True, (0, 255, 0), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
