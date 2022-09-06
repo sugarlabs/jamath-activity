@@ -77,12 +77,17 @@ class expresion:
             return rand_coord_y
 
         self.preguntas = pygame.sprite.Group()
-        self.correct_number = number(rand_generator_x(), rand_generator_y(),
-                                     fuente.render(
-            self.resultado, True, (random.randint(100, 255),
-                                   random.randint(100, 255),
-                                   random.randint(100, 255))),
-            True)
+        self.correct_number = number(
+            rand_generator_x(), rand_generator_y(),
+            fuente.render(
+                self.resultado, True, (
+                    random.randint(100, 255),
+                    random.randint(100, 255),
+                    random.randint(100, 255),
+                )
+            ),
+            True
+        )
         self.preguntas.add(self.correct_number)
         self.wrong_numbers = []
         for i in range(0, 5):
@@ -136,11 +141,35 @@ def get_translated_text(text):
         loc = "en"
     translations = {
         "en": [
-            "PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ", "PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :(", "Select correct ball to answer or type it using keyboard"
-        ],
+            "PLAY",
+            "LEVEL",
+            "QUIT",
+            "easy",
+            "medium",
+            "hard",
+            "Score : ",
+            "Highest Score : ",
+            "Timer : ",
+            "PLAY AGAIN",
+            "GAME OVER!!",
+            "Hurray! you won :)",
+            "Ay! you lost :(",
+            "Select correct ball to answer or type it using keyboard"],
         "es": [
-            "JUGAR", "NIVEL", "SALIR", "facil", "medio", "dificil", "Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : ", "jUEGA DE NUEVO", "JUEGO TERMINADO!!", "Hurra! ganaste :)", "Ay! perdiste :(", "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado"
-        ],
+            "JUGAR",
+            "NIVEL",
+            "SALIR",
+            "facil",
+            "medio",
+            "dificil",
+            "Puntaje : ",
+            "Puntaje Mas Alto : ",
+            "Temporizador : ",
+            "jUEGA DE NUEVO",
+            "JUEGO TERMINADO!!",
+            "Hurra! ganaste :)",
+            "Ay! perdiste :(",
+            "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado"],
     }
     if text in translations["en"]:
         return translations[loc][translations["en"].index(text)]
@@ -239,7 +268,9 @@ class Game():
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + jugar.get_height():
                         jugar = self.fuente_130.render(
-                            get_translated_text("PLAY"), True, (122, 245, 61), (102, 110, 98))
+                            get_translated_text("PLAY"),
+                            True, (122, 245, 61),
+                            (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -247,7 +278,9 @@ class Game():
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + level.get_height():
                         level = self.fuente_130.render(
-                            get_translated_text("LEVEL"), True, (122, 245, 61), (102, 110, 98))
+                            get_translated_text("LEVEL"),
+                            True, (122, 245, 61),
+                            (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     elif event.pos[0] > sx(450) and \
@@ -255,7 +288,9 @@ class Game():
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + quit.get_height():
                         quit = self.fuente_130.render(
-                            get_translated_text("QUIT"), True, (122, 245, 61), (102, 110, 98))
+                            get_translated_text("QUIT"),
+                            True, (122, 245, 61),
+                            (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     else:
@@ -466,7 +501,9 @@ class Game():
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + play_again.get_height():
                         play_again = self.fuente_60.render(
-                            get_translated_text("PLAY AGAIN"), True, (122, 245, 61), (102, 110, 98))
+                            get_translated_text("PLAY AGAIN"),
+                            True, (122, 245, 61),
+                            (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
                     if event.pos[0] > sx(840) and \
@@ -544,7 +581,10 @@ class Game():
                 while Gtk.events_pending():
                     Gtk.main_iteration()
                 gameover = self.fuente_60.render(
-                    get_translated_text("GAME OVER!!"), True, (255, 255, 255), (0, 0, 0))
+                    get_translated_text(
+                        "GAME OVER!!"),
+                    True, (255, 255, 255),
+                    (0, 0, 0))
                 if score >= high_score:
                     high_score = score
                     win = self.fuente_130.render(
