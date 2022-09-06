@@ -136,44 +136,25 @@ def cargar_imagen(nombre, trasnparent=False):
 
 
 def get_translated_text(text):
-    loc = locale.getdefaultlocale()[0][:2]
-    if loc not in ("en", "es"):
-        loc = "en"
+    if locale.getdefaultlocale()[0][:2] != "es":
+        return text
     translations = {
-        "en": [
-            "PLAY",
-            "LEVEL",
-            "QUIT",
-            "easy",
-            "medium",
-            "hard",
-            "Score : ",
-            "Highest Score : ",
-            "Timer : ",
-            "PLAY AGAIN",
-            "GAME OVER!!",
-            "Hurray! you won :)",
-            "Ay! you lost :(",
-            "Select correct ball to answer or type it using keyboard"],
-        "es": [
-            "JUGAR",
-            "NIVEL",
-            "SALIR",
-            "facil",
-            "medio",
-            "dificil",
-            "Puntaje : ",
-            "Puntaje Mas Alto : ",
-            "Temporizador : ",
-            "jUEGA DE NUEVO",
-            "JUEGO TERMINADO!!",
-            "Hurra! ganaste :)",
-            "Ay! perdiste :(",
-            "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado"],
+        "PLAY" : "JUGAR",
+        "LEVEL" : "NIVEL",
+        "QUIT" : "SALIR",
+        "easy" : "facil",
+        "medium" : "medio",
+        "hard" : "dificil",
+        "Score : " : "Punjate : ",
+        "Highest Score : " : "Puntaje Mas Alto : ",
+        "Timer : " : "Temporizador : ",
+        "PLAY AGAIN" : "jUEGA DE NUEVO",
+        "GAME OVER!!" : "JUEGO TERMINADO!!",
+        "Hurray! you won :)" : "Hurra! ganaste :)",
+        "Ay! you lost :(" : "Ay! perdiste :(",
+        "Select correct ball to answer or type it using keyboard" : "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado",
     }
-    if text in translations["en"]:
-        return translations[loc][translations["en"].index(text)]
-    return text
+    return translations[text]
 
 
 class Game():
