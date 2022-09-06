@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from sugar3.activity.activity import get_activity_root
 import time
 import locale
 import logging
@@ -16,7 +17,6 @@ from gi.repository import Gtk
 import os
 import gi
 gi.require_version('Gtk', '3.0')
-from sugar3.activity.activity import get_activity_root
 
 
 class number(pygame.sprite.Sprite):
@@ -31,6 +31,7 @@ class number(pygame.sprite.Sprite):
     def update(self, time_to_iterate, vel, level):
         incremento_nivel = {"facil": 1, "medio": 2, "dificil": 3}
         self.rect.move_ip(0, time_to_iterate * vel * incremento_nivel[level])
+
 
 class expresion:
 
@@ -77,11 +78,11 @@ class expresion:
 
         self.preguntas = pygame.sprite.Group()
         self.correct_number = number(rand_generator_x(), rand_generator_y(),
-                   fuente.render(
-                       self.resultado, True, (random.randint(100, 255),
-                                              random.randint(100, 255),
-                                              random.randint(100, 255))),
-                   True)
+                                     fuente.render(
+            self.resultado, True, (random.randint(100, 255),
+                                   random.randint(100, 255),
+                                   random.randint(100, 255))),
+            True)
         self.preguntas.add(self.correct_number)
         self.wrong_numbers = []
         for i in range(0, 5):
@@ -97,10 +98,10 @@ class expresion:
                     100, 255), random.randint(
                     100, 255)))
             self.wrong_numbers.append(number(
-                    wrong_x_coord,
-                    wrong_y_coord,
-                    image_wrong,
-                    False))
+                wrong_x_coord,
+                wrong_y_coord,
+                image_wrong,
+                False))
         self.preguntas.add(*self.wrong_numbers)
 
     def update_expression(self, user):
@@ -128,22 +129,23 @@ def cargar_imagen(nombre, trasnparent=False):
     imagen = imagen.convert()
     return imagen
 
+
 def get_translated_text(text):
     loc = locale.getdefaultlocale()[0][:2]
     if loc not in ("en", "es"):
         loc = "en"
     translations = {
         "en": [
-            "PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ","PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :(", "Select correct ball to answer or type it using keyboard"
+            "PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ", "PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :(", "Select correct ball to answer or type it using keyboard"
         ],
-
-        "es" : [
+        "es": [
             "JUGAR", "NIVEL", "SALIR", "facil", "medio", "dificil", "Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : ", "jUEGA DE NUEVO", "JUEGO TERMINADO!!", "Hurra! ganaste :)", "Ay! perdiste :(", "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado"
         ],
     }
     if text in translations["en"]:
         return translations[loc][translations["en"].index(text)]
     return text
+
 
 class Game():
 
@@ -168,7 +170,6 @@ class Game():
 
     global sx, sy
 
-
     def sx(coord_x):
         return coord_x * scale_x
 
@@ -177,10 +178,22 @@ class Game():
 
     def main(self):
         sonido_menu = load_sound("menu.ogg")
-        jugar = self.fuente_130.render(get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
-        level = self.fuente_130.render(get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
-        quit = self.fuente_130.render(get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
-        help = self.fuente_32.render(get_translated_text("Select correct ball to answer or type it using keyboard"), True, (0, 255, 0), (0, 0, 0))
+        jugar = self.fuente_130.render(
+            get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
+        level = self.fuente_130.render(
+            get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
+        quit = self.fuente_130.render(
+            get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
+        help = self.fuente_32.render(
+            get_translated_text(
+                "Select correct ball to answer or type it using keyboard"),
+            True,
+            (0,
+             255,
+             0),
+            (0,
+             0,
+             0))
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
@@ -196,7 +209,7 @@ class Game():
             quit_rect.x = sx(475)
             quit_rect.y = sy(540)
             help_rect = jugar.get_rect()
-            help_rect.x = sx(600) - help.get_rect().width/2
+            help_rect.x = sx(600) - help.get_rect().width / 2
             help_rect.y = sy(840)
             self.screen.blit(fondo, (0, 0))
             self.screen.blit(jugar, jugar_rect)
@@ -409,13 +422,16 @@ class Game():
                     (sx(260), 0))
                 self.screen.blit(
                     self.fuente_32.render(
-                        get_translated_text("Highest Score : ") + str(puntuacionalta),
+                        get_translated_text(
+                            "Highest Score : ") + str(puntuacionalta),
                         True,
                         (120, 255, 120)),
                     (sx(450), 0))
                 self.screen.blit(nueva_expresion.expresion, (sx(200), sy(750)))
-                for number in (nueva_expresion.correct_number, *nueva_expresion.wrong_numbers):
-                    pygame.draw.circle(self.screen, (40, 40, 40), number.rect.center, 50)
+                for number in (nueva_expresion.correct_number,
+                               *nueva_expresion.wrong_numbers):
+                    pygame.draw.circle(
+                        self.screen, (40, 40, 40), number.rect.center, 50)
                 nueva_expresion.preguntas.draw(self.screen)
                 current_time = max_time_limit - (time.time() - start_time)
                 countdown_time = "{:.2f}".format(current_time)
