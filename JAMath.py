@@ -28,6 +28,7 @@ class JAMath(Activity):
             main=self.jamath_activity.run,
             modules=[pygame.display, pygame.font, pygame.mixer])
         self.set_canvas(self._pygamecanvas)
+        self._pygamecanvas.grab_focus()
 
     def build_toolbar(self):
 

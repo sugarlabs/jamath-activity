@@ -38,63 +38,52 @@ class expresion:
 
         incremento_nivel = {"facil": 9, "medio": 20, "dificil": 50}
         operacion = {1: "+", 2: "-", 3: "*", 4: "/"}
-        simbolo = {1: "+", 2: "-", 3: "X", 4: ":"}
-        operador = random.randint(2, 3)
+        self.fuente = fuente
+        self.simbolo = {1: "+", 2: "-", 3: "X", 4: ":"}
+        self.operador = random.randint(2, 3)
         self.primero = str(random.randint(0, incremento_nivel[level]))
         self.segundo = str(random.randint(0, incremento_nivel[level]))
         self.expresion = fuente.render(
             self.primero +
-            simbolo[operador] +
+            self.simbolo[self.operador] +
             self.segundo +
             " = ? ",
             True,
-            (255, 0, 0))
+            (255, 120, 120))
         self.resultado = str(
             eval(
                 self.primero +
-                operacion[operador] +
+                operacion[self.operador] +
                 self.segundo))
         self.vida = 0
 
-        no_repeat_check_x = []
-        no_repeat_check_y = []
-        list_y = [int(sx(-90)), int(sx(-80)), int(sx(-60)),
-                  int(sx(-50)), int(sx(-40)), int(sx(-30)),
-                  int(sx(-20)), int(sx(-10)), int(sx(-0))]
-        list_x = [int(sx(100)), int(sx(200)), int(sx(300)),
-                  int(sx(400)), int(sx(500)), int(sx(600)),
-                  int(sx(700)), int(sx(800)), int(sx(900))]
+        list_y = [int(sx(-120)), int(sx(-105)), int(sx(-90)),
+                  int(sx(-75)), int(sx(-60)), int(sx(-45)),
+                  int(sx(-30)), int(sx(-15)), int(sx(-0))]
+        list_x = [int(sx(80)), int(sx(200)), int(sx(320)),
+                  int(sx(440)), int(sx(560)), int(sx(680)),
+                  int(sx(700)), int(sx(820)), int(sx(940)),
+                  int(sx(1060))]
 
         def rand_generator_x():
-            count_x = 0
-            while count_x < len(list_x):
-                rand_coord_x = random.choice(list_x)
-                count_x += 1
-                if rand_coord_x not in no_repeat_check_x:
-                    no_repeat_check_x.append(rand_coord_x)
-                    return rand_coord_x
-            return int(sx(1000))
+            rand_coord_x = random.choice(list_x)
+            list_x.remove(rand_coord_x)
+            return rand_coord_x
 
         def rand_generator_y():
-            count_y = 0
-            while count_y < len(list_y):
-                count_y += 1
-                rand_coord_y = random.choice(list_y)
-                if rand_coord_y not in no_repeat_check_y:
-                    no_repeat_check_y.append(rand_coord_y)
-                    return rand_coord_y
-            return int(sx(-70))
+            rand_coord_y = random.choice(list_y)
+            list_y.remove(rand_coord_y)
+            return rand_coord_y
 
         self.preguntas = pygame.sprite.Group()
-        ans_x_coord = rand_generator_x()
-        ans_y_coord = rand_generator_y()
-        self.preguntas.add(
-            number(ans_x_coord, ans_y_coord,
+        self.correct_number = number(rand_generator_x(), rand_generator_y(),
                    fuente.render(
-                       self.resultado, True, (random.randint(0, 255),
-                                              random.randint(0, 255),
-                                              random.randint(0, 255))),
-                   True))
+                       self.resultado, True, (random.randint(100, 255),
+                                              random.randint(100, 255),
+                                              random.randint(100, 255))),
+                   True)
+        self.preguntas.add(self.correct_number)
+        self.wrong_numbers = []
         for i in range(0, 5):
             if random.randint(0, 1) == 0:
                 wrong = str(int(self.resultado) - random.randint(1, 10))
@@ -104,15 +93,26 @@ class expresion:
             wrong_y_coord = rand_generator_y()
             image_wrong = fuente.render(
                 wrong, True, (random.randint(
-                    0, 255), random.randint(
-                    0, 255), random.randint(
-                    0, 255)))
-            self.preguntas.add(
-                number(
+                    100, 255), random.randint(
+                    100, 255), random.randint(
+                    100, 255)))
+            self.wrong_numbers.append(number(
                     wrong_x_coord,
                     wrong_y_coord,
                     image_wrong,
                     False))
+        self.preguntas.add(*self.wrong_numbers)
+
+    def update_expression(self, user):
+        self.expresion = self.fuente.render(
+            self.primero +
+            self.simbolo[self.operador] +
+            self.segundo +
+            " = " +
+            user,
+            True,
+            (255, 120, 120)
+        )
 
 
 def cargar_imagen(nombre, trasnparent=False):
@@ -140,7 +140,22 @@ class Game():
             "en": ["PLAY", "LEVEL", "QUIT", "easy", "medium", "hard", "Score : ", "Highest Score : ", "Timer : ","PLAY AGAIN", "GAME OVER!!", "Hurray! you won :)", "Ay! you lost :("],
             "es" : ["JUGAR", "NIVEL", "SALIR", "facil", "medio", "dificil", "Puntaje : ", "Puntaje Mas Alto : ", "Temporizador : ", "jUEGA DE NUEVO", "JUEGO TERMINADO!!", "Hurra! ganaste :)", "Ay! perdiste :("],
         }
-        
+        self.user = ""
+        self.keys = (
+            pygame.K_0,
+            pygame.K_1,
+            pygame.K_2,
+            pygame.K_3,
+            pygame.K_4,
+            pygame.K_5,
+            pygame.K_6,
+            pygame.K_7,
+            pygame.K_8,
+            pygame.K_9,
+            pygame.K_MINUS,
+            pygame.K_BACKSPACE,
+            pygame.K_RETURN,
+        )
 
     global sx, sy
 
@@ -160,6 +175,7 @@ class Game():
         jugar = self.fuente_130.render(self.get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
         level = self.fuente_130.render(self.get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
         quit = self.fuente_130.render(self.get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
+        help = self.fuente_32.render("Selecciona la bola correcta para responder o escribe la respuesta usando el teclado", True, (0, 255, 0), (0, 0, 0))
         fondo = cargar_imagen('data/1.jpg')
         chosen_level = "facil"
 
@@ -174,10 +190,14 @@ class Game():
             quit_rect = jugar.get_rect()
             quit_rect.x = sx(475)
             quit_rect.y = sy(540)
+            help_rect = jugar.get_rect()
+            help_rect.x = sx(600) - help.get_rect().width/2
+            help_rect.y = sy(840)
             self.screen.blit(fondo, (0, 0))
             self.screen.blit(jugar, jugar_rect)
             self.screen.blit(level, level_rect)
             self.screen.blit(quit, quit_rect)
+            self.screen.blit(help, help_rect)
             while Gtk.events_pending():
                 Gtk.main_iteration()
             if not self.running:
@@ -380,15 +400,17 @@ class Game():
                     self.fuente_32.render(
                         self.get_translated_text("Score : ") + str(score),
                         True,
-                        (0, 0, 0)),
-                    (sx(410), 0))
+                        (120, 255, 120)),
+                    (sx(260), 0))
                 self.screen.blit(
                     self.fuente_32.render(
                         self.get_translated_text("Highest Score : ") + str(puntuacionalta),
                         True,
-                        (0, 0, 0)),
-                    (sx(600), 0))
+                        (120, 255, 120)),
+                    (sx(450), 0))
                 self.screen.blit(nueva_expresion.expresion, (sx(200), sy(750)))
+                for number in (nueva_expresion.correct_number, *nueva_expresion.wrong_numbers):
+                    pygame.draw.circle(self.screen, (40, 40, 40), number.rect.center, 50)
                 nueva_expresion.preguntas.draw(self.screen)
                 current_time = max_time_limit - (time.time() - start_time)
                 countdown_time = "{:.2f}".format(current_time)
@@ -396,8 +418,8 @@ class Game():
                     self.fuente_32.render(
                         self.get_translated_text("Timer : ") + str(countdown_time),
                         True,
-                        (0, 0, 0)),
-                    (sx(930), 0))
+                        (120, 255, 120)),
+                    (sx(780), 0))
 
             while Gtk.events_pending():
                 Gtk.main_iteration()
@@ -471,6 +493,28 @@ class Game():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         return 0
+                    if event.key in self.keys:
+                        if event.key == pygame.K_RETURN:
+                            if self.user == nueva_expresion.resultado:
+                                if right_sound is not None:
+                                    right_sound.play()
+                                score += 7
+                            else:
+                                if right_sound is not None:
+                                    wrong_sound.play()
+                                score -= 3
+                            another_quest = True
+                            self.user = ""
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.user = self.user[:-1]
+                        elif event.key == pygame.K_MINUS:
+                            if len(self.user) > 0 and self.user[0] == "-":
+                                self.user = self.user[1:]
+                            else:
+                                self.user = "-" + self.user
+                        else:
+                            self.user += pygame.key.name(event.key)
+                        nueva_expresion.update_expression(self.user)
                 save_puntuacionalta(score)
 
             def game_over():
