@@ -243,8 +243,8 @@ class Game():
                         quit = self.fuente_130.render(
                             get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
 
-                    if event.pos[0] > sx(450) and \
-                            event.pos[0] < sx(450) + jugar.get_width() and \
+                    if event.pos[0] > sx(475) and \
+                            event.pos[0] < sx(475) + jugar.get_width() and \
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + jugar.get_height():
                         jugar = self.fuente_130.render(
@@ -253,8 +253,8 @@ class Game():
                             (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
-                    elif event.pos[0] > sx(450) and \
-                            event.pos[0] < sx(450) + level.get_width() and \
+                    elif event.pos[0] > sx(475) and \
+                            event.pos[0] < sx(475) + level.get_width() and \
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + level.get_height():
                         level = self.fuente_130.render(
@@ -263,8 +263,8 @@ class Game():
                             (102, 110, 98))
                         if sonido_menu is not None:
                             sonido_menu.play()
-                    elif event.pos[0] > sx(450) and \
-                            event.pos[0] < sx(450) + quit.get_width() and \
+                    elif event.pos[0] > sx(475) and \
+                            event.pos[0] < sx(475) + quit.get_width() and \
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + quit.get_height():
                         quit = self.fuente_130.render(
@@ -277,18 +277,18 @@ class Game():
                         not_hover = True
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > sx(450) and \
-                                event.pos[0] < sx(450) + jugar.get_width() \
+                        if event.pos[0] > sx(475) and \
+                                event.pos[0] < sx(475) + jugar.get_width() \
                                 and event.pos[1] > sy(180) and \
                                 event.pos[1] < sy(180) + jugar.get_height():
                             return chosen_level
-                        elif event.pos[0] > sx(450) and \
-                                event.pos[0] < sx(450) + level.get_width() \
+                        elif event.pos[0] > sx(475) and \
+                                event.pos[0] < sx(475) + level.get_width() \
                                 and event.pos[1] > sy(360) and \
                                 event.pos[1] < sy(360) + level.get_height():
                             chosen_level = self.choose_level()
-                        elif event.pos[0] > sx(450) and \
-                                event.pos[0] < sx(450) + quit.get_width() \
+                        elif event.pos[0] > sx(475) and \
+                                event.pos[0] < sx(475) + quit.get_width() \
                                 and event.pos[1] > sy(540) and \
                                 event.pos[1] < sy(540) + quit.get_height():
                             self.running = False
@@ -339,24 +339,24 @@ class Game():
                         dificil = self.fuente_130.render(
                             get_translated_text("hard"), True, (0, 0, 255), (0, 0, 0))
 
-                    if event.pos[0] > sx(450) and \
-                            event.pos[0] < sx(450) + facil.get_width() and \
+                    if event.pos[0] > sx(470) and \
+                            event.pos[0] < sx(470) + facil.get_width() and \
                             event.pos[1] > sy(180) and \
                             event.pos[1] < sy(180) + facil.get_height():
                         facil = self.fuente_130.render(
                             get_translated_text("easy"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
-                    elif event.pos[0] > sx(450) and \
-                            event.pos[0] < sx(450) + medio.get_width() and \
+                    elif event.pos[0] > sx(417) and \
+                            event.pos[0] < sx(417) + medio.get_width() and \
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + medio.get_height():
                         medio = self.fuente_130.render(
                             get_translated_text("medium"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None:
                             sonido_menu.play()
-                    elif event.pos[0] > sx(450) and \
-                            event.pos[0] < sx(450) + dificil.get_width() and \
+                    elif event.pos[0] > sx(465) and \
+                            event.pos[0] < sx(465) + dificil.get_width() and \
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + dificil.get_height():
                         dificil = self.fuente_130.render(
@@ -367,20 +367,20 @@ class Game():
                         not_hover = True
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > sx(450) and \
-                                event.pos[0] < sx(450) + facil.get_width() \
+                        if event.pos[0] > sx(470) and \
+                                event.pos[0] < sx(470) + facil.get_width() \
                                 and event.pos[1] > sy(180) and \
                                 event.pos[1] < sy(180) + facil.get_height():
                             pass
                             return level
-                        elif event.pos[0] > sx(450) and \
-                                event.pos[0] < sx(450) + medio.get_width() \
+                        elif event.pos[0] > sx(417) and \
+                                event.pos[0] < sx(417) + medio.get_width() \
                                 and event.pos[1] > sy(360) and \
                                 event.pos[1] < sy(360) + medio.get_height():
                             level = "medio"
                             return level
-                        elif event.pos[0] > sx(450) and \
-                                event.pos[0] < sx(450) + dificil.get_width() \
+                        elif event.pos[0] > sx(465) and \
+                                event.pos[0] < sx(465) + dificil.get_width() \
                                 and event.pos[1] > sy(540) and \
                                 event.pos[1] < sy(540) + dificil.get_height():
                             level = "dificil"
@@ -476,8 +476,8 @@ class Game():
                         quit_game = self.fuente_60.render(
                             get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
 
-                    if event.pos[0] > sx(60) and \
-                            event.pos[0] < sx(60) + play_again.get_width() and \
+                    if event.pos[0] > sx(260) and \
+                            event.pos[0] < sx(260) + play_again.get_width() and \
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + play_again.get_height():
                         play_again = self.fuente_60.render(
@@ -517,8 +517,8 @@ class Game():
                                     another_quest = True
                                     score -= 3
                         if response == 1:
-                            if event.pos[0] > sx(60) and \
-                                    event.pos[0] < sx(60) + play_again.get_width() and \
+                            if event.pos[0] > sx(260) and \
+                                    event.pos[0] < sx(260) + play_again.get_width() and \
                                     event.pos[1] > sy(700) and \
                                     event.pos[1] < sy(700) + play_again.get_height():
                                 return
@@ -599,9 +599,9 @@ class Game():
                 high_score_display_rect = high_score_display.get_rect()
                 high_score_display_rect.midbottom = (sx(590), sy(650))
                 quit_rect = quit_game.get_rect()
-                quit_rect.bottomleft = (sx(840), sy(780))
+                quit_rect.topleft = (sx(840), sy(700))
                 play_again_rect = play_again.get_rect()
-                play_again_rect.bottomright = (sx(420), sy(780))
+                play_again_rect.topleft = (sx(260), sy(700))
                 self.screen.blit(fondo, (0, 0))
                 self.screen.blit(gameover, gameover_rect)
                 self.screen.blit(score_display, score_display_rect)
