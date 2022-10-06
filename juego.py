@@ -560,30 +560,13 @@ class Game():
                 high_score = puntuacionalta
                 while Gtk.events_pending():
                     Gtk.main_iteration()
-                gameover = self.fuente_60.render(
+                gameover = self.fuente_130.render(
                     get_translated_text(
                         "GAME OVER!!"),
                     True, (255, 255, 255),
                     (0, 0, 0))
-                if score >= high_score:
-                    high_score = score
-                    win = self.fuente_130.render(
-                        get_translated_text("Hurray! you won :)"),
-                        True,
-                        (237, 88, 235),
-                        (0, 0, 0))
-                    win_rect = win.get_rect()
-                    win_rect.center = (sx(600), sy(350))
-                else:
-                    lose = self.fuente_130.render(
-                        get_translated_text("Ay! you lost :("),
-                        True,
-                        (245, 17, 25),
-                        (0, 0, 0))
-                    lose_rect = lose.get_rect()
-                    lose_rect.center = (sx(600), sy(350))
                 score_display = self.fuente_60.render(
-                    get_translated_text("Score : ") + str(score),
+                    get_translated_text("Your Score : ") + str(score),
                     True,
                     (0, 255, 255),
                     (0, 0, 0))
@@ -595,9 +578,9 @@ class Game():
                 gameover_rect = gameover.get_rect()
                 gameover_rect.midtop = (sx(590), sy(100))
                 score_display_rect = score_display.get_rect()
-                score_display_rect.center = (sx(590), sy(500))
+                score_display_rect.center = (sx(590), sy(400))
                 high_score_display_rect = high_score_display.get_rect()
-                high_score_display_rect.midbottom = (sx(590), sy(650))
+                high_score_display_rect.midbottom = (sx(590), sy(550))
                 quit_rect = quit_game.get_rect()
                 quit_rect.topleft = (sx(840), sy(700))
                 play_again_rect = play_again.get_rect()
@@ -609,10 +592,6 @@ class Game():
                     high_score_display, high_score_display_rect)
                 self.screen.blit(quit_game, quit_rect)
                 self.screen.blit(play_again, play_again_rect)
-                if score >= high_score:
-                    self.screen.blit(win, win_rect)
-                else:
-                    self.screen.blit(lose, lose_rect)
                 pygame.display.flip()
             pygame.display.update()
 
