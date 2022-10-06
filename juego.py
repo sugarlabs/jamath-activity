@@ -45,12 +45,14 @@ class expresion:
         self.primero = str(random.randint(0, incremento_nivel[level]))
         self.segundo = str(random.randint(0, incremento_nivel[level]))
         self.expresion = fuente.render(
+            " " +
             self.primero +
             self.simbolo[self.operador] +
             self.segundo +
             " = ? ",
             True,
-            (255, 120, 120))
+            (255, 120, 120),
+            (0, 0, 0))
         self.resultado = str(
             eval(
                 self.primero +
@@ -110,13 +112,15 @@ class expresion:
 
     def update_expression(self, user):
         self.expresion = self.fuente.render(
+            " " +
             self.primero +
             self.simbolo[self.operador] +
             self.segundo +
             " = " +
             user,
             True,
-            (255, 120, 120)
+            (255, 120, 120),
+            (0, 0, 0)
         )
 
 
@@ -429,20 +433,35 @@ class Game():
 
                 nueva_expresion.preguntas.update(
                     time_to_iterate, random.randint(80, 155), level)
-                self.screen.blit(
-                    self.fuente_32.render(
-                        get_translated_text("Score : ") + str(score),
-                        True,
-                        (120, 255, 120)),
-                    (sx(260), 0))
-                self.screen.blit(
-                    self.fuente_32.render(
-                        get_translated_text(
-                            "Highest Score : ") + str(puntuacionalta),
-                        True,
-                        (120, 255, 120)),
-                    (sx(450), 0))
-                self.screen.blit(nueva_expresion.expresion, (sx(200), sy(750)))
+                current_score = self.fuente_32.render(
+                    get_translated_text(" Score : ") +
+                    str(score) +
+                    " ",
+                    True,
+                    (120, 255, 120),
+                    (0, 0, 0))
+
+                high_score = self.fuente_32.render(
+                    get_translated_text(
+                        " Highest Score : ") +
+                    str(puntuacionalta) +
+                    " ",
+                    True,
+                    (120, 255, 120),
+                    (0, 0, 0))
+
+                current_score_rect = current_score.get_rect()
+                current_score_rect.topleft = sx(60), sy(10)
+                self.screen.blit(current_score, current_score_rect)
+
+                high_score_rect = high_score.get_rect()
+                high_score_rect.topleft = sx(60), sy(60)
+                self.screen.blit(high_score, high_score_rect)
+
+                expresion_rect = nueva_expresion.expresion.get_rect()
+                expresion_rect.midtop = sx(600), sy(10)
+                self.screen.blit(nueva_expresion.expresion, expresion_rect)
+
                 for number in (nueva_expresion.correct_number,
                                *nueva_expresion.wrong_numbers):
                     pygame.draw.circle(
@@ -450,12 +469,14 @@ class Game():
                 nueva_expresion.preguntas.draw(self.screen)
                 current_time = max_time_limit - (time.time() - start_time)
                 countdown_time = "{:.2f}".format(current_time)
-                self.screen.blit(
-                    self.fuente_32.render(
-                        get_translated_text("Timer : ") + str(countdown_time),
-                        True,
-                        (120, 255, 120)),
-                    (sx(780), 0))
+                timer = self.fuente_32.render(
+                    get_translated_text(" Timer : ") + str(countdown_time),
+                    True,
+                    (120, 255, 120),
+                    (0, 0, 0))
+                timer_rect = timer.get_rect()
+                timer_rect.topleft = sx(980), sy(10)
+                self.screen.blit(timer, timer_rect)
 
             while Gtk.events_pending():
                 Gtk.main_iteration()
