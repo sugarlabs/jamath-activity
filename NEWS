@@ -1,3 +1,10 @@
+v6
+
+* UI enhancement: Improved the UI of question rendering. (Sourabha G)
+* UX: removed displaying lose/win in gameover page after each game. (Sourabha G)
+* Fix hitboxes of buttons. (Sparsh Goenka)
+* Fixed circles cutting off at edge. (Sparsh Goenka)
+
 v5
 
 * Improve User Interface (Sparsh Goenka)
