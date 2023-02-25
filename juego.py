@@ -191,6 +191,7 @@ class Game():
 
     def main(self):
         sonido_menu = load_sound("menu.ogg")
+        menu_sound_played = False
         jugar = self.fuente_130.render(
             get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
         level = self.fuente_130.render(
@@ -255,8 +256,9 @@ class Game():
                             get_translated_text("PLAY"),
                             True, (122, 245, 61),
                             (102, 110, 98))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     elif event.pos[0] > sx(475) and \
                             event.pos[0] < sx(475) + level.get_width() and \
                             event.pos[1] > sy(360) and \
@@ -265,8 +267,9 @@ class Game():
                             get_translated_text("LEVEL"),
                             True, (122, 245, 61),
                             (102, 110, 98))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     elif event.pos[0] > sx(475) and \
                             event.pos[0] < sx(475) + quit.get_width() and \
                             event.pos[1] > sy(540) and \
@@ -275,10 +278,12 @@ class Game():
                             get_translated_text("QUIT"),
                             True, (122, 245, 61),
                             (102, 110, 98))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     else:
                         not_hover = True
+                        menu_sound_played = False
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         if event.pos[0] > sx(475) and \
@@ -300,8 +305,8 @@ class Game():
             pygame.display.update()
 
     def choose_level(self):
-
         sonido_menu = load_sound("menu.ogg")
+        menu_sound_played = False
         facil = self.fuente_130.render(
             get_translated_text("easy"), True, (0, 0, 255), (0, 0, 0))
         medio = self.fuente_130.render(
@@ -349,26 +354,30 @@ class Game():
                             event.pos[1] < sy(180) + facil.get_height():
                         facil = self.fuente_130.render(
                             get_translated_text("easy"), True, (0, 255, 0), (0, 0, 0))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     elif event.pos[0] > sx(417) and \
                             event.pos[0] < sx(417) + medio.get_width() and \
                             event.pos[1] > sy(360) and \
                             event.pos[1] < sy(360) + medio.get_height():
                         medio = self.fuente_130.render(
                             get_translated_text("medium"), True, (0, 255, 0), (0, 0, 0))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None  and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     elif event.pos[0] > sx(465) and \
                             event.pos[0] < sx(465) + dificil.get_width() and \
                             event.pos[1] > sy(540) and \
                             event.pos[1] < sy(540) + dificil.get_height():
                         dificil = self.fuente_130.render(
                             get_translated_text("hard"), True, (0, 255, 0), (0, 0, 0))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     else:
                         not_hover = True
+                        menu_sound_played = False
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         if event.pos[0] > sx(470) and \
@@ -407,6 +416,7 @@ class Game():
         puntuacionalta = load_puntuacionalta()
         response = 0
         sonido_menu = load_sound("menu.ogg")
+        menu_sound_played = False
         play_again = self.fuente_60.render(
             get_translated_text("PLAY AGAIN"), True, (0, 0, 0), (255, 0, 0))
         quit_game = self.fuente_60.render(
@@ -505,18 +515,21 @@ class Game():
                             get_translated_text("PLAY AGAIN"),
                             True, (122, 245, 61),
                             (102, 110, 98))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     if event.pos[0] > sx(840) and \
                             event.pos[0] < sx(840) + quit_game.get_width() and \
                             event.pos[1] > sy(700) and \
                             event.pos[1] < sy(700) + quit_game.get_height():
                         quit_game = self.fuente_60.render(
                             get_translated_text("QUIT"), True, (122, 245, 61), (102, 110, 98))
-                        if sonido_menu is not None:
+                        if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
+                            menu_sound_played = True
                     else:
                         not_hover = True
+                        menu_sound_played = False
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
