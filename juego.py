@@ -160,6 +160,38 @@ def get_translated_text(text):
     return translations[text]
 
 
+class Juego_button:
+    def __init__(self, content, fuente, x, y):
+        self.content = content
+        self.fuente = fuente
+        self.object = self.fuente.render(
+            get_translated_text(content), True, (0, 0, 255), (0, 0, 0))
+        self.rect = self.object.get_rect()
+        self.rect.x = sx(x)
+        self.rect.y = sy(y)
+        self.hovered = False
+    
+    def checkHover(self, sonido_hover):
+        if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if not self.hovered:
+                self.hovered = True
+                self.object = self.fuente.render(
+                    get_translated_text(self.content),True,
+                    (122, 245, 61),(102, 110, 98))
+                if sonido_hover is not None:
+                    sonido_hover.play()
+        else:
+            self.hovered = False
+            self.object = self.fuente.render(
+            get_translated_text(self.content), True, (0, 0, 255), (0, 0, 0))
+
+    def blit(self, screen):
+        screen.blit(self.object, self.rect)
+
+    def isHovered(self):
+        return self.rect.collidepoint(pygame.mouse.get_pos())
+
+
 class Game():
 
     def __init__(self, activity):
@@ -192,12 +224,9 @@ class Game():
     def main(self):
         sonido_menu = load_sound("menu.ogg")
         menu_sound_played = False
-        jugar = self.fuente_130.render(
-            get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
-        level = self.fuente_130.render(
-            get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
-        quit = self.fuente_130.render(
-            get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
+        jugar = Juego_button("PLAY", self.fuente_130, 475, 180)
+        level = Juego_button("LEVEL", self.fuente_130, 475, 360)
+        quit = Juego_button("QUIT", self.fuente_130, 475, 540)
         help = self.fuente_32.render(
             get_translated_text(
                 "Select correct ball to answer or type it using keyboard"),
@@ -213,22 +242,13 @@ class Game():
 
         while self.running:
             self.screen.fill((0, 0, 0))
-            jugar_rect = jugar.get_rect()
-            jugar_rect.x = sx(475)
-            jugar_rect.y = sy(180)
-            level_rect = level.get_rect()
-            level_rect.x = sx(475)
-            level_rect.y = sy(360)
-            quit_rect = jugar.get_rect()
-            quit_rect.x = sx(475)
-            quit_rect.y = sy(540)
-            help_rect = jugar.get_rect()
+            help_rect = help.get_rect()
             help_rect.x = sx(600) - help.get_rect().width / 2
             help_rect.y = sy(840)
             self.screen.blit(fondo, (0, 0))
-            self.screen.blit(jugar, jugar_rect)
-            self.screen.blit(level, level_rect)
-            self.screen.blit(quit, quit_rect)
+            jugar.blit(self.screen)
+            level.blit(self.screen)
+            quit.blit(self.screen)
             self.screen.blit(help, help_rect)
             while Gtk.events_pending():
                 Gtk.main_iteration()
@@ -239,49 +259,16 @@ class Game():
                     self.running = False
                     return
                 elif event.type == MOUSEMOTION:
-                    not_hover = True
-                    if not_hover:
-                        jugar = self.fuente_130.render(
-                            get_translated_text("PLAY"), True, (0, 0, 255), (0, 0, 0))
-                        level = self.fuente_130.render(
-                            get_translated_text("LEVEL"), True, (0, 0, 255), (0, 0, 0))
-                        quit = self.fuente_130.render(
-                            get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
-
-                    if jugar_rect.collidepoint(pygame.mouse.get_pos()):
-                        jugar = self.fuente_130.render(
-                            get_translated_text("PLAY"),
-                            True, (122, 245, 61),
-                            (102, 110, 98))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    elif level_rect.collidepoint(pygame.mouse.get_pos()):
-                        level = self.fuente_130.render(
-                            get_translated_text("LEVEL"),
-                            True, (122, 245, 61),
-                            (102, 110, 98))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    elif quit_rect.collidepoint(pygame.mouse.get_pos()):
-                        quit = self.fuente_130.render(
-                            get_translated_text("QUIT"),
-                            True, (122, 245, 61),
-                            (102, 110, 98))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    else:
-                        not_hover = True
-                        menu_sound_played = False
+                    jugar.checkHover(sonido_menu)
+                    level.checkHover(sonido_menu)
+                    quit.checkHover(sonido_menu)
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if jugar_rect.collidepoint(pygame.mouse.get_pos()):
+                        if jugar.isHovered():
                             return chosen_level
-                        elif level_rect.collidepoint(pygame.mouse.get_pos()):
+                        elif level.isHovered():
                             chosen_level = self.choose_level()
-                        elif quit_rect.collidepoint(pygame.mouse.get_pos()):
+                        elif quit.isHovered():
                             self.running = False
                             self.activity.close()
             pygame.display.update()
@@ -289,29 +276,16 @@ class Game():
     def choose_level(self):
         sonido_menu = load_sound("menu.ogg")
         menu_sound_played = False
-        facil = self.fuente_130.render(
-            get_translated_text("easy"), True, (0, 0, 255), (0, 0, 0))
-        medio = self.fuente_130.render(
-            get_translated_text("medium"), True, (0, 0, 255), (0, 0, 0))
-        dificil = self.fuente_130.render(
-            get_translated_text("hard"), True, (0, 0, 255), (0, 0, 0))
+        facil = Juego_button("easy", self.fuente_130, 470, 180)
+        medio = Juego_button("medium", self.fuente_130, 417, 360)
+        dificil = Juego_button("hard", self.fuente_130, 465, 540)
         fondo = cargar_imagen('data/1.jpg')
-        level = "facil"
         while self.running:
             self.screen.fill((0, 0, 0))
-            facil_rect = facil.get_rect()
-            facil_rect.x = sx(470)
-            facil_rect.y = sy(180)
-            medio_rect = medio.get_rect()
-            medio_rect.x = sx(417)
-            medio_rect.y = sy(360)
-            dificil_rect = dificil.get_rect()
-            dificil_rect.x = sx(465)
-            dificil_rect.y = sy(540)
             self.screen.blit(fondo, (0, 0))
-            self.screen.blit(facil, facil_rect)
-            self.screen.blit(medio, medio_rect)
-            self.screen.blit(dificil, dificil_rect)
+            facil.blit(self.screen)
+            medio.blit(self.screen)
+            dificil.blit(self.screen)
             while Gtk.events_pending():
                 Gtk.main_iteration()
             if not self.running:
@@ -321,47 +295,17 @@ class Game():
                     self.running = False
                     return
                 elif event.type == MOUSEMOTION:
-                    not_hover = True
-                    if not_hover:
-                        facil = self.fuente_130.render(
-                            get_translated_text("easy"), True, (0, 0, 255), (0, 0, 0))
-                        medio = self.fuente_130.render(
-                            get_translated_text("medium"), True, (0, 0, 255), (0, 0, 0))
-                        dificil = self.fuente_130.render(
-                            get_translated_text("hard"), True, (0, 0, 255), (0, 0, 0))
-
-                    if facil_rect.collidepoint(pygame.mouse.get_pos()):
-                        facil = self.fuente_130.render(
-                            get_translated_text("easy"), True, (0, 255, 0), (0, 0, 0))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    elif medio_rect.collidepoint(pygame.mouse.get_pos()):
-                        medio = self.fuente_130.render(
-                            get_translated_text("medium"), True, (0, 255, 0), (0, 0, 0))
-                        if sonido_menu is not None  and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    elif dificil_rect.collidepoint(pygame.mouse.get_pos()):
-                        dificil = self.fuente_130.render(
-                            get_translated_text("hard"), True, (0, 255, 0), (0, 0, 0))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    else:
-                        not_hover = True
-                        menu_sound_played = False
+                    facil.checkHover(sonido_menu)
+                    medio.checkHover(sonido_menu)
+                    dificil.checkHover(sonido_menu)
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if facil_rect.collidepoint(pygame.mouse.get_pos()):
-                            pass
-                            return level
-                        elif medio_rect.collidepoint(pygame.mouse.get_pos()):
-                            level = "medio"
-                            return level
-                        elif dificil_rect.collidepoint(pygame.mouse.get_pos()):
-                            level = "dificil"
-                            return level
+                        if facil.isHovered():
+                            return "facil"
+                        if medio.isHovered():
+                            return "medio"
+                        if dificil.isHovered():
+                            return "dificil"
                 elif event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         level = "facil"
@@ -381,10 +325,8 @@ class Game():
         response = 0
         sonido_menu = load_sound("menu.ogg")
         menu_sound_played = False
-        play_again = self.fuente_60.render(
-            get_translated_text("PLAY AGAIN"), True, (0, 0, 0), (255, 0, 0))
-        quit_game = self.fuente_60.render(
-            get_translated_text("QUIT"), True, (0, 0, 0), (255, 0, 0))
+        play_again = Juego_button("PLAY AGAIN", self.fuente_60, 260, 700)
+        quit_game = Juego_button("QUIT", self.fuente_60, 840, 700)
         max_time_limit = 60.00
         start_time = time.time()
         current_time = max_time_limit
@@ -464,36 +406,8 @@ class Game():
                     self.running = False
                     return
                 elif event.type == MOUSEMOTION:
-                    not_hover = True
-                    if not_hover:
-                        play_again = self.fuente_60.render(
-                            get_translated_text("PLAY AGAIN"), True, (0, 0, 255), (0, 0, 0))
-                        quit_game = self.fuente_60.render(
-                            get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
-
-                    if event.pos[0] > sx(260) and \
-                            event.pos[0] < sx(260) + play_again.get_width() and \
-                            event.pos[1] > sy(700) and \
-                            event.pos[1] < sy(700) + play_again.get_height():
-                        play_again = self.fuente_60.render(
-                            get_translated_text("PLAY AGAIN"),
-                            True, (122, 245, 61),
-                            (102, 110, 98))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    if event.pos[0] > sx(840) and \
-                            event.pos[0] < sx(840) + quit_game.get_width() and \
-                            event.pos[1] > sy(700) and \
-                            event.pos[1] < sy(700) + quit_game.get_height():
-                        quit_game = self.fuente_60.render(
-                            get_translated_text("QUIT"), True, (122, 245, 61), (102, 110, 98))
-                        if sonido_menu is not None and not menu_sound_played:
-                            sonido_menu.play()
-                            menu_sound_played = True
-                    else:
-                        not_hover = True
-                        menu_sound_played = False
+                    play_again.checkHover(sonido_menu)    
+                    quit_game.checkHover(sonido_menu)    
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
@@ -515,15 +429,9 @@ class Game():
                                     another_quest = True
                                     score -= 3
                         if response == 1:
-                            if event.pos[0] > sx(260) and \
-                                    event.pos[0] < sx(260) + play_again.get_width() and \
-                                    event.pos[1] > sy(700) and \
-                                    event.pos[1] < sy(700) + play_again.get_height():
+                            if play_again.isHovered():
                                 return
-                            if event.pos[0] > sx(840) and \
-                                    event.pos[0] < sx(840) + quit_game.get_width() and \
-                                    event.pos[1] > sy(700) and \
-                                    event.pos[1] < sy(700) + quit_game.get_height():
+                            if quit_game.isHovered():
                                 self.running = False
                                 self.activity.close()
                 if event.type == KEYDOWN:
@@ -579,17 +487,13 @@ class Game():
                 score_display_rect.center = (sx(590), sy(400))
                 high_score_display_rect = high_score_display.get_rect()
                 high_score_display_rect.midbottom = (sx(590), sy(550))
-                quit_rect = quit_game.get_rect()
-                quit_rect.topleft = (sx(840), sy(700))
-                play_again_rect = play_again.get_rect()
-                play_again_rect.topleft = (sx(260), sy(700))
                 self.screen.blit(fondo, (0, 0))
                 self.screen.blit(gameover, gameover_rect)
                 self.screen.blit(score_display, score_display_rect)
                 self.screen.blit(
                     high_score_display, high_score_display_rect)
-                self.screen.blit(quit_game, quit_rect)
-                self.screen.blit(play_again, play_again_rect)
+                play_again.blit(self.screen)
+                quit_game.blit(self.screen)
                 pygame.display.flip()
             pygame.display.update()
 
