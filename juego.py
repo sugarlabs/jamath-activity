@@ -248,10 +248,7 @@ class Game():
                         quit = self.fuente_130.render(
                             get_translated_text("QUIT"), True, (0, 0, 255), (0, 0, 0))
 
-                    if event.pos[0] > sx(475) and \
-                            event.pos[0] < sx(475) + jugar.get_width() and \
-                            event.pos[1] > sy(180) and \
-                            event.pos[1] < sy(180) + jugar.get_height():
+                    if jugar_rect.collidepoint(pygame.mouse.get_pos()):
                         jugar = self.fuente_130.render(
                             get_translated_text("PLAY"),
                             True, (122, 245, 61),
@@ -259,10 +256,7 @@ class Game():
                         if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
                             menu_sound_played = True
-                    elif event.pos[0] > sx(475) and \
-                            event.pos[0] < sx(475) + level.get_width() and \
-                            event.pos[1] > sy(360) and \
-                            event.pos[1] < sy(360) + level.get_height():
+                    elif level_rect.collidepoint(pygame.mouse.get_pos()):
                         level = self.fuente_130.render(
                             get_translated_text("LEVEL"),
                             True, (122, 245, 61),
@@ -270,10 +264,7 @@ class Game():
                         if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
                             menu_sound_played = True
-                    elif event.pos[0] > sx(475) and \
-                            event.pos[0] < sx(475) + quit.get_width() and \
-                            event.pos[1] > sy(540) and \
-                            event.pos[1] < sy(540) + quit.get_height():
+                    elif quit_rect.collidepoint(pygame.mouse.get_pos()):
                         quit = self.fuente_130.render(
                             get_translated_text("QUIT"),
                             True, (122, 245, 61),
@@ -286,20 +277,11 @@ class Game():
                         menu_sound_played = False
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > sx(475) and \
-                                event.pos[0] < sx(475) + jugar.get_width() \
-                                and event.pos[1] > sy(180) and \
-                                event.pos[1] < sy(180) + jugar.get_height():
+                        if jugar_rect.collidepoint(pygame.mouse.get_pos()):
                             return chosen_level
-                        elif event.pos[0] > sx(475) and \
-                                event.pos[0] < sx(475) + level.get_width() \
-                                and event.pos[1] > sy(360) and \
-                                event.pos[1] < sy(360) + level.get_height():
+                        elif level_rect.collidepoint(pygame.mouse.get_pos()):
                             chosen_level = self.choose_level()
-                        elif event.pos[0] > sx(475) and \
-                                event.pos[0] < sx(475) + quit.get_width() \
-                                and event.pos[1] > sy(540) and \
-                                event.pos[1] < sy(540) + quit.get_height():
+                        elif quit_rect.collidepoint(pygame.mouse.get_pos()):
                             self.running = False
                             self.activity.close()
             pygame.display.update()
@@ -348,28 +330,19 @@ class Game():
                         dificil = self.fuente_130.render(
                             get_translated_text("hard"), True, (0, 0, 255), (0, 0, 0))
 
-                    if event.pos[0] > sx(470) and \
-                            event.pos[0] < sx(470) + facil.get_width() and \
-                            event.pos[1] > sy(180) and \
-                            event.pos[1] < sy(180) + facil.get_height():
+                    if facil_rect.collidepoint(pygame.mouse.get_pos()):
                         facil = self.fuente_130.render(
                             get_translated_text("easy"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None and not menu_sound_played:
                             sonido_menu.play()
                             menu_sound_played = True
-                    elif event.pos[0] > sx(417) and \
-                            event.pos[0] < sx(417) + medio.get_width() and \
-                            event.pos[1] > sy(360) and \
-                            event.pos[1] < sy(360) + medio.get_height():
+                    elif medio_rect.collidepoint(pygame.mouse.get_pos()):
                         medio = self.fuente_130.render(
                             get_translated_text("medium"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None  and not menu_sound_played:
                             sonido_menu.play()
                             menu_sound_played = True
-                    elif event.pos[0] > sx(465) and \
-                            event.pos[0] < sx(465) + dificil.get_width() and \
-                            event.pos[1] > sy(540) and \
-                            event.pos[1] < sy(540) + dificil.get_height():
+                    elif dificil_rect.collidepoint(pygame.mouse.get_pos()):
                         dificil = self.fuente_130.render(
                             get_translated_text("hard"), True, (0, 255, 0), (0, 0, 0))
                         if sonido_menu is not None and not menu_sound_played:
@@ -380,22 +353,13 @@ class Game():
                         menu_sound_played = False
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if event.pos[0] > sx(470) and \
-                                event.pos[0] < sx(470) + facil.get_width() \
-                                and event.pos[1] > sy(180) and \
-                                event.pos[1] < sy(180) + facil.get_height():
+                        if facil_rect.collidepoint(pygame.mouse.get_pos()):
                             pass
                             return level
-                        elif event.pos[0] > sx(417) and \
-                                event.pos[0] < sx(417) + medio.get_width() \
-                                and event.pos[1] > sy(360) and \
-                                event.pos[1] < sy(360) + medio.get_height():
+                        elif medio_rect.collidepoint(pygame.mouse.get_pos()):
                             level = "medio"
                             return level
-                        elif event.pos[0] > sx(465) and \
-                                event.pos[0] < sx(465) + dificil.get_width() \
-                                and event.pos[1] > sy(540) and \
-                                event.pos[1] < sy(540) + dificil.get_height():
+                        elif dificil_rect.collidepoint(pygame.mouse.get_pos()):
                             level = "dificil"
                             return level
                 elif event.type == KEYDOWN:
