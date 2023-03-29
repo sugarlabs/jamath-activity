@@ -142,20 +142,20 @@ def get_translated_text(text):
     if locale.getdefaultlocale()[0][:2] != "es":
         return text
     translations = {
-        "PLAY" : "JUGAR",
-        "LEVEL" : "NIVEL",
-        "QUIT" : "SALIR",
-        "easy" : "facil",
-        "medium" : "medio",
-        "hard" : "dificil",
-        "Score : " : "Punjate : ",
-        "Highest Score : " : "Puntaje Mas Alto : ",
-        "Timer : " : "Temporizador : ",
-        "PLAY AGAIN" : "jUEGA DE NUEVO",
-        "GAME OVER!!" : "JUEGO TERMINADO!!",
-        "Hurray! you won :)" : "Hurra! ganaste :)",
-        "Ay! you lost :(" : "Ay! perdiste :(",
-        "Select correct ball to answer or type it using keyboard" : "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado",
+        "PLAY": "JUGAR",
+        "LEVEL": "NIVEL",
+        "QUIT": "SALIR",
+        "easy": "facil",
+        "medium": "medio",
+        "hard": "dificil",
+        "Score : ": "Punjate : ",
+        "Highest Score : ": "Puntaje Mas Alto : ",
+        "Timer : ": "Temporizador : ",
+        "PLAY AGAIN": "jUEGA DE NUEVO",
+        "GAME OVER!!": "JUEGO TERMINADO!!",
+        "Hurray! you won :)": "Hurra! ganaste :)",
+        "Ay! you lost :(": "Ay! perdiste :(",
+        "Select correct ball to answer or type it using keyboard": "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado",
     }
     return translations[text]
 
@@ -170,20 +170,20 @@ class Juego_button:
         self.rect.x = sx(x)
         self.rect.y = sy(y)
         self.hovered = False
-    
+
     def checkHover(self, sonido_hover):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
             if not self.hovered:
                 self.hovered = True
                 self.object = self.fuente.render(
-                    get_translated_text(self.content),True,
-                    (122, 245, 61),(102, 110, 98))
+                    get_translated_text(self.content), True,
+                    (122, 245, 61), (102, 110, 98))
                 if sonido_hover is not None:
                     sonido_hover.play()
         else:
             self.hovered = False
             self.object = self.fuente.render(
-            get_translated_text(self.content), True, (0, 0, 255), (0, 0, 0))
+                get_translated_text(self.content), True, (0, 0, 255), (0, 0, 0))
 
     def blit(self, screen):
         screen.blit(self.object, self.rect)
@@ -193,7 +193,6 @@ class Juego_button:
 
 
 class Game():
-
     def __init__(self, activity):
         self.activity = activity
         self.user = ""

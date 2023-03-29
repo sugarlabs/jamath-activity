@@ -4,16 +4,14 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+
 import pygame
 import sugargame.canvas
-
 from juego import Game
-
 from sugar3.activity.activity import Activity
 from sugar3.graphics.toolbarbox import ToolbarBox
-from sugar3.activity.widgets import ActivityToolbarButton
-from sugar3.activity.widgets import StopButton
-from sugar3.graphics.toolbutton import ToolButton
+from sugar3.activity.widgets import ActivityToolbarButton, StopButton
+
 
 class JAMath(Activity):
 
@@ -24,7 +22,8 @@ class JAMath(Activity):
 
         self.jamath_activity = Game(activity=self)
         self.build_toolbar()
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self,
+        self._pygamecanvas = sugargame.canvas.PygameCanvas(
+            self,
             main=self.jamath_activity.run,
             modules=[pygame.display, pygame.font, pygame.mixer])
         self.set_canvas(self._pygamecanvas)
@@ -55,8 +54,3 @@ class JAMath(Activity):
 
     def _stop_cb(self, button):
         self.jamath_activity.running = False
-
-
-
-
-

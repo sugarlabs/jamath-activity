@@ -74,7 +74,7 @@ class PygameCanvas(Gtk.EventBox):
             return None
 
         _tmp_dir = os.path.join(self._activity.get_activity_root(),
-            'tmp')
+                                'tmp')
         _file_path = os.path.join(_tmp_dir, 'preview.png')
 
         width = PREVIEW_SIZE[0]

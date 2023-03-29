@@ -99,8 +99,8 @@ class Translator(object):
 
     def _resize_cb(self, widget, event):
         if pygame.display.get_init():
-            evt = pygame.event.Event(pygame.VIDEORESIZE, 
-                                     size=(event.width,event.height),
+            evt = pygame.event.Event(pygame.VIDEORESIZE,
+                                     size=(event.width, event.height),
                                      width=event.width, height=event.height)
             pygame.event.post(evt)
         return False  # continue processing
@@ -194,7 +194,7 @@ class Translator(object):
 
     def _mouseevent(self, widget, event, type):
         evt = pygame.event.Event(type, button=event.button, pos=(event.x,
-            event.y))
+                                 event.y))
         self._post(evt)
         return True
 
