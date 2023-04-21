@@ -28,6 +28,16 @@ class JAMath(Activity):
             modules=[pygame.display, pygame.font, pygame.mixer])
         self.set_canvas(self._pygamecanvas)
         self._pygamecanvas.grab_focus()
+        # Add a timer to the game
+        self.timer_seconds = 60
+        self.timer_label = Gtk.Label(label=f'Time Left: {self.timer_seconds}')
+        self.timer_label.set_margin_right(10)
+        self.toolbar_box.toolbar.pack_end(self.timer_label, False, False, 0)
+        self.timer_label.show()
+
+        # Add sound effects to the game
+        self.correct_sound = pygame.mixer.Sound("correct.wav")
+        self.incorrect_sound = pygame.mixer.Sound("incorrect.wav")
 
     def build_toolbar(self):
 
@@ -54,3 +64,31 @@ class JAMath(Activity):
 
     def _stop_cb(self, button):
         self.jamath_activity.running = False
+    # Update the timer label every second
+    def update_timer(self):
+        self.timer_seconds -= 1
+        if self.timer_seconds == 0:
+            self.jamath_activity.running = False
+        else:
+            self.timer_label.set_label(f'Time Left: {self.timer_seconds}')
+            return True
+
+    # Play a sound effect when a number is answered correctly
+    def play_correct_sound(self):
+        self.correct_sound.play()
+
+    # Play a sound effect when a number is answered incorrectly
+    def play_incorrect_sound(self):
+        self.incorrect_sound.play()
+
+    # Override the run method to add the timer and sound effects
+    def run(self):
+        # Start the timer
+        GObject.timeout_add_seconds(1, self.update_timer)
+
+        # Set the sound effects on the game object
+        self.jamath_activity.play_correct_sound = self.play_correct_sound
+        self.jamath_activity.play_incorrect_sound = self.play_incorrect_sound
+
+        # Call the original run method
+        super(JAMath, self).run()
