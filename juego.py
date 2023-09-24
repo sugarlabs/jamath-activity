@@ -222,7 +222,6 @@ class Game():
 
     def main(self):
         sonido_menu = load_sound("menu.ogg")
-        menu_sound_played = False
         jugar = Juego_button("PLAY", self.fuente_130, 475, 180)
         level = Juego_button("LEVEL", self.fuente_130, 475, 360)
         quit = Juego_button("QUIT", self.fuente_130, 475, 540)
@@ -274,7 +273,6 @@ class Game():
 
     def choose_level(self):
         sonido_menu = load_sound("menu.ogg")
-        menu_sound_played = False
         facil = Juego_button("easy", self.fuente_130, 470, 180)
         medio = Juego_button("medium", self.fuente_130, 417, 360)
         dificil = Juego_button("hard", self.fuente_130, 465, 540)
@@ -323,7 +321,6 @@ class Game():
         puntuacionalta = load_puntuacionalta()
         response = 0
         sonido_menu = load_sound("menu.ogg")
-        menu_sound_played = False
         play_again = Juego_button("PLAY AGAIN", self.fuente_60, 260, 700)
         quit_game = Juego_button("QUIT", self.fuente_60, 840, 700)
         max_time_limit = 60.00
@@ -405,8 +402,8 @@ class Game():
                     self.running = False
                     return
                 elif event.type == MOUSEMOTION:
-                    play_again.checkHover(sonido_menu)    
-                    quit_game.checkHover(sonido_menu)    
+                    play_again.checkHover(sonido_menu)
+                    quit_game.checkHover(sonido_menu)
                 elif event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for i in nueva_expresion.preguntas.sprites():
@@ -546,7 +543,7 @@ def save_puntuacionalta(score):
         puntuacionalta = File.readlines()
         File.close()
     p = int(puntuacionalta[0])
-    if not(p > score):
+    if p <= score:
         File = open(file_path, "w")
         File.write(str(score))
         File.close()
