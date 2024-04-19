@@ -194,6 +194,8 @@ class Juego_button:
 
 class Game():
     def __init__(self, activity):
+        self.correct_answers = 0
+        self.total_questions = 0
         self.activity = activity
         self.user = ""
         self.keys = (
@@ -362,6 +364,23 @@ class Game():
                     (120, 255, 120),
                     (0, 0, 0))
 
+                accuracy_percentage = (
+                    (self.correct_answers / self.total_questions) * 100
+                    if self.total_questions > 0
+                    else 0
+                )
+                accuracy_text = get_translated_text("Accuracy : ")
+                accuracy_percent_text = "{:.2f}%".format(accuracy_percentage)
+                accuracy_display_text = accuracy_text + accuracy_percent_text
+                accuracy_text = self.fuente_32.render(
+                    accuracy_display_text,
+                    True,
+                    (120, 255, 120),
+                    (0, 0, 0))
+                accuracy_rect = accuracy_text.get_rect()
+                accuracy_rect.topleft = sx(60), sy(110)
+                self.screen.blit(accuracy_text, accuracy_rect)
+
                 current_score_rect = current_score.get_rect()
                 current_score_rect.topleft = sx(60), sy(10)
                 self.screen.blit(current_score, current_score_rect)
@@ -414,12 +433,15 @@ class Game():
                                     event.pos[1] < i.rect.y \
                                     + i.image.get_height():
                                 if i.answer:
+                                    self.correct_answers += 1
+                                    self.total_questions += 1
                                     if right_sound is not None:
                                         right_sound.play()
                                     another_quest = True
                                     score += 7
 
                                 else:
+                                    self.total_questions += 1
                                     if right_sound is not None:
                                         wrong_sound.play()
                                     another_quest = True
@@ -436,10 +458,13 @@ class Game():
                     if event.key in self.keys:
                         if event.key == pygame.K_RETURN:
                             if self.user == nueva_expresion.resultado:
+                                self.correct_answers += 1
+                                self.total_questions += 1
                                 if right_sound is not None:
                                     right_sound.play()
                                 score += 7
                             else:
+                                self.total_questions += 1
                                 if right_sound is not None:
                                     wrong_sound.play()
                                 score -= 3
@@ -460,6 +485,11 @@ class Game():
             def game_over():
 
                 high_score = puntuacionalta
+                accuracy_percentage = (
+                    (self.correct_answers / self.total_questions) * 100
+                    if self.total_questions > 0
+                    else 0
+                )
                 while Gtk.events_pending():
                     Gtk.main_iteration()
                 gameover = self.fuente_130.render(
@@ -477,17 +507,27 @@ class Game():
                     True,
                     (0, 255, 255),
                     (0, 0, 0))
+                accuracy_text = get_translated_text("Accuracy : ")
+                accuracy_percent_text = "{:.2f}%".format(accuracy_percentage)
+                accuracy_display_text = accuracy_text + accuracy_percent_text
+                accuracy_display = self.fuente_60.render(
+                    accuracy_display_text,
+                    True,
+                    (0, 255, 255),
+                    (0, 0, 0))
                 gameover_rect = gameover.get_rect()
                 gameover_rect.midtop = (sx(590), sy(100))
                 score_display_rect = score_display.get_rect()
                 score_display_rect.center = (sx(590), sy(400))
                 high_score_display_rect = high_score_display.get_rect()
                 high_score_display_rect.midbottom = (sx(590), sy(550))
+                accuracy_display_rect = accuracy_display.get_rect()
+                accuracy_display_rect.midbottom = (sx(590), sy(650))
                 self.screen.blit(fondo, (0, 0))
                 self.screen.blit(gameover, gameover_rect)
                 self.screen.blit(score_display, score_display_rect)
-                self.screen.blit(
-                    high_score_display, high_score_display_rect)
+                self.screen.blit(high_score_display, high_score_display_rect)
+                self.screen.blit(accuracy_display, accuracy_display_rect)
                 play_again.blit(self.screen)
                 quit_game.blit(self.screen)
                 pygame.display.flip()
