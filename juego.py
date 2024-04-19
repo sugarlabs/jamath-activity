@@ -45,19 +45,19 @@ class expresion:
         self.primero = str(random.randint(0, incremento_nivel[level]))
         self.segundo = str(random.randint(0, incremento_nivel[level]))
         self.expresion = fuente.render(
-            " " +
-            self.primero +
-            self.simbolo[self.operador] +
-            self.segundo +
-            " = ? ",
+            " "
+            + self.primero
+            + self.simbolo[self.operador]
+            + self.segundo
+            + " = ? ",
             True,
             (255, 120, 120),
             (0, 0, 0))
         self.resultado = str(
             eval(
-                self.primero +
-                operacion[self.operador] +
-                self.segundo))
+                self.primero
+                + operacion[self.operador]
+                + self.segundo))
         self.vida = 0
 
         list_y = [int(sx(-120)), int(sx(-105)), int(sx(-90)),
@@ -112,12 +112,12 @@ class expresion:
 
     def update_expression(self, user):
         self.expresion = self.fuente.render(
-            " " +
-            self.primero +
-            self.simbolo[self.operador] +
-            self.segundo +
-            " = " +
-            user,
+            " "
+            + self.primero
+            + self.simbolo[self.operador]
+            + self.segundo
+            + " = "
+            + user,
             True,
             (255, 120, 120),
             (0, 0, 0)
@@ -155,7 +155,9 @@ def get_translated_text(text):
         "GAME OVER!!": "JUEGO TERMINADO!!",
         "Hurray! you won :)": "Hurra! ganaste :)",
         "Ay! you lost :(": "Ay! perdiste :(",
-        "Select correct ball to answer or type it using keyboard": "Selecciona la bola correcta para responder o escribe la respuesta usando el teclado",
+        "Select correct ball to answer or type it using keyboard":
+            "Selecciona la bola correcta para responder o "
+            "escribe la respuesta usando el teclado",
     }
     return translations[text]
 
@@ -183,7 +185,11 @@ class Juego_button:
         else:
             self.hovered = False
             self.object = self.fuente.render(
-                get_translated_text(self.content), True, (0, 0, 255), (0, 0, 0))
+                get_translated_text(self.content),
+                True,
+                (0, 0, 255),
+                (0, 0, 0)
+            )
 
     def blit(self, screen):
         screen.blit(self.object, self.rect)
@@ -310,6 +316,43 @@ class Game():
             pygame.display.update()
 
     def play(self, level):
+
+        def game_over():
+
+            high_score = puntuacionalta
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+            gameover = self.fuente_130.render(
+                get_translated_text(
+                    "GAME OVER!!"),
+                True, (255, 255, 255),
+                (0, 0, 0))
+            score_display = self.fuente_60.render(
+                get_translated_text("Your Score : ") + str(score),
+                True,
+                (0, 255, 255),
+                (0, 0, 0))
+            high_score_display = self.fuente_60.render(
+                get_translated_text("Highest Score : ") + str(high_score),
+                True,
+                (0, 255, 255),
+                (0, 0, 0))
+            gameover_rect = gameover.get_rect()
+            gameover_rect.midtop = (sx(590), sy(100))
+            score_display_rect = score_display.get_rect()
+            score_display_rect.center = (sx(590), sy(400))
+            high_score_display_rect = high_score_display.get_rect()
+            high_score_display_rect.midbottom = (sx(590), sy(550))
+            self.screen.blit(fondo, (0, 0))
+            self.screen.blit(gameover, gameover_rect)
+            self.screen.blit(score_display, score_display_rect)
+            self.screen.blit(
+                high_score_display, high_score_display_rect)
+            play_again.blit(self.screen)
+            quit_game.blit(self.screen)
+            pygame.display.flip()
+        pygame.display.update()
+
         die_point = {"facil": 200, "medio": 100, "dificil": 60}
 
         another_quest = True
@@ -346,18 +389,18 @@ class Game():
                 nueva_expresion.preguntas.update(
                     time_to_iterate, random.randint(80, 155), level)
                 current_score = self.fuente_32.render(
-                    get_translated_text(" Score : ") +
-                    str(score) +
-                    " ",
+                    get_translated_text(" Score : ")
+                    + str(score)
+                    + " ",
                     True,
                     (120, 255, 120),
                     (0, 0, 0))
 
                 high_score = self.fuente_32.render(
                     get_translated_text(
-                        " Highest Score : ") +
-                    str(puntuacionalta) +
-                    " ",
+                        " Highest Score : ")
+                    + str(puntuacionalta)
+                    + " ",
                     True,
                     (120, 255, 120),
                     (0, 0, 0))
@@ -456,42 +499,6 @@ class Game():
                             self.user += pygame.key.name(event.key)
                         nueva_expresion.update_expression(self.user)
                 save_puntuacionalta(score)
-
-            def game_over():
-
-                high_score = puntuacionalta
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
-                gameover = self.fuente_130.render(
-                    get_translated_text(
-                        "GAME OVER!!"),
-                    True, (255, 255, 255),
-                    (0, 0, 0))
-                score_display = self.fuente_60.render(
-                    get_translated_text("Your Score : ") + str(score),
-                    True,
-                    (0, 255, 255),
-                    (0, 0, 0))
-                high_score_display = self.fuente_60.render(
-                    get_translated_text("Highest Score : ") + str(high_score),
-                    True,
-                    (0, 255, 255),
-                    (0, 0, 0))
-                gameover_rect = gameover.get_rect()
-                gameover_rect.midtop = (sx(590), sy(100))
-                score_display_rect = score_display.get_rect()
-                score_display_rect.center = (sx(590), sy(400))
-                high_score_display_rect = high_score_display.get_rect()
-                high_score_display_rect.midbottom = (sx(590), sy(550))
-                self.screen.blit(fondo, (0, 0))
-                self.screen.blit(gameover, gameover_rect)
-                self.screen.blit(score_display, score_display_rect)
-                self.screen.blit(
-                    high_score_display, high_score_display_rect)
-                play_again.blit(self.screen)
-                quit_game.blit(self.screen)
-                pygame.display.flip()
-            pygame.display.update()
 
     def run(self):
         self.running = True
