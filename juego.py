@@ -324,6 +324,8 @@ class Game():
         play_again = Juego_button("PLAY AGAIN", self.fuente_60, 260, 700)
         quit_game = Juego_button("QUIT", self.fuente_60, 840, 700)
         max_time_limit = 60.00
+        # Do not count time spent in menus as movement in the first frame.
+        self.clock.tick()
         start_time = time.time()
         current_time = max_time_limit
         while self.running:
